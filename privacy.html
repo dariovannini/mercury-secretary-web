@@ -1,0 +1,104 @@
+<!doctype html>
+<!--
+  ATTENZIONE, prima di far nascere il server.
+
+  Il paragrafo «Nessun server proprietario» — e il suo gemello inglese «No
+  custom servers» — sono veri finché Mercury parla solo dal dispositivo di chi
+  lo usa. Le decisioni dell'8 settembre prevedono un server che tiene la chiave
+  dell'IA: dal giorno in cui quel server vede il primo messaggio, i corpi delle
+  email passano da una macchina di Dario, e queste due righe diventano una
+  dichiarazione falsa dentro un documento legale pubblico — su cui Google fa
+  affidamento per la verifica (Limited Use) e Apple per la revisione.
+
+  Vanno riscritte **prima** che il server veda un solo messaggio, non dopo.
+
+  Questo non è un promemoria: `GuardiaDelSitoTests` fa fallire la suite il
+  giorno in cui nel repository compare un server e queste righe sono ancora
+  qui. Se stai leggendo perché una prova è diventata rossa, è quello.
+-->
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Informativa sulla privacy — Mercury Secretary</title>
+<meta name="description" content="Come Mercury Secretary tratta i dati: nessun server proprietario, credenziali nel Portachiavi del dispositivo, testo dei messaggi inviato ad Anthropic per la classificazione.">
+<style>
+  :root {
+    --inchiostro: #1a1a2e;
+    --grigio: #5b5b73;
+    --accento: #3d2b7d;
+    --bordo: #e3e3ec;
+    --fondo: #faf9fc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--inchiostro);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .foglio { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+  header { border-bottom: 1px solid var(--bordo); padding-bottom: 28px; margin-bottom: 36px; }
+  .marchio { font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--accento); font-weight: 700; }
+  h1 { font-size: 30px; line-height: 1.25; margin: 12px 0 8px; }
+  h2 { font-size: 20px; margin: 40px 0 10px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 10px; }
+  .data { color: var(--grigio); font-size: 15px; margin: 0; }
+  footer {
+    margin-top: 56px; padding-top: 22px;
+    border-top: 1px solid var(--bordo);
+    color: var(--grigio); font-size: 15px;
+  }
+  a { color: var(--accento); }
+  .lingua { margin-top: 56px; padding-top: 28px; border-top: 1px solid var(--bordo); }
+</style>
+</head>
+<body>
+<div class="foglio">
+
+<header>
+  <div class="marchio"><a href="index.html">Mercury Secretary</a></div>
+  <h1>Informativa sulla privacy</h1>
+  <p class="data">In vigore dal 9 settembre 2026</p>
+</header>
+
+<p>Mercury Secretary è un assistente personale con intelligenza artificiale. Ecco come vengono trattati i dati.</p>
+
+<ul>
+  <li><strong>Nessun server proprietario.</strong> Non gestiamo server. I dati restano sul dispositivo o vanno direttamente ai servizi terzi che autorizzi tu.</li>
+  <li><strong>Servizi terzi.</strong> L'app si collega ai tuoi account Gmail e Telegram, quando li autorizzi, per leggere i messaggi in arrivo e mandare le risposte che scrivi. Per WhatsApp Business l'app manda soltanto: i messaggi in arrivo su WhatsApp non vengono letti.</li>
+  <li><strong>Elaborazione con l'IA.</strong> Il testo dei messaggi in arrivo viene inviato alle API di Anthropic per classificarli e per scrivere le bozze di risposta.</li>
+  <li><strong>Calendario di sistema.</strong> L'app chiede l'accesso al calendario del dispositivo per controllare la disponibilità e creare gli appuntamenti che confermi.</li>
+  <li><strong>Credenziali.</strong> Chiavi e credenziali stanno nel Portachiavi locale del dispositivo. Non ci vengono mai trasmesse.</li>
+  <li><strong>Conservazione e cancellazione.</strong> I messaggi classificati restano in un archivio locale sul dispositivo, per mantenere il contesto. Si può svuotare in qualsiasi momento dalle Impostazioni dell'app.</li>
+  <li><strong>Revoca del consenso.</strong> Si può revocare in qualsiasi momento scollegando gli account dalle Impostazioni: l'operazione toglie anche chiavi e credenziali dal Portachiavi.</li>
+</ul>
+
+<h2>Contatti</h2>
+<p>Per domande sull'informativa o sul trattamento dei dati: <a href="mailto:dariovannini019@gmail.com">dariovannini019@gmail.com</a></p>
+
+<div class="lingua">
+<h2>English version</h2>
+<p>Mercury Secretary is a personal AI assistant application. This policy explains how your data is handled.</p>
+<ul>
+  <li><strong>No custom servers.</strong> We do not operate our own servers. All your data stays on your device or is communicated directly to the third-party services you authorize.</li>
+  <li><strong>Third-party services.</strong> The app connects to your Gmail and Telegram accounts, when you authorize them, to read incoming messages and send the replies you write. For WhatsApp Business the app only sends: incoming WhatsApp messages are not read.</li>
+  <li><strong>AI processing.</strong> The content of your incoming messages is sent to Anthropic's API to classify them and generate draft replies.</li>
+  <li><strong>System calendar.</strong> The app requests access to your device's calendar to check availability and create the events you confirm.</li>
+  <li><strong>Credential storage.</strong> Credentials and API keys are stored in your device's local Keychain. They are never transmitted to us.</li>
+  <li><strong>Data retention and deletion.</strong> Classified messages are stored in a local archive on your device to keep context. You can clear it at any time from the app's Settings.</li>
+  <li><strong>Revoking consent.</strong> You can revoke consent at any time by disconnecting your accounts in Settings; this also removes keys and credentials from the Keychain.</li>
+</ul>
+<p>Questions: <a href="mailto:dariovannini019@gmail.com">dariovannini019@gmail.com</a></p>
+</div>
+
+<footer>
+  <p><a href="index.html">Torna alla pagina principale</a></p>
+  <p>© 2026 Mercury Secretary</p>
+</footer>
+
+</div>
+</body>
+</html>

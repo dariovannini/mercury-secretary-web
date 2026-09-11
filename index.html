@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercury Secretary — il segretario che guarda le comunicazioni al posto tuo</title>
+<meta name="description" content="Mercury Secretary è un'applicazione per Mac e iPhone che legge le comunicazioni in arrivo da Gmail e Telegram, distingue quelle che chiedono una risposta e prepara le bozze. La decisione resta di chi la usa.">
+<style>
+  :root {
+    --inchiostro: #1a1a2e;
+    --grigio: #5b5b73;
+    --accento: #3d2b7d;
+    --bordo: #e3e3ec;
+    --fondo: #faf9fc;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--inchiostro);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .foglio { max-width: 720px; margin: 0 auto; padding: 56px 24px 80px; }
+  header { border-bottom: 1px solid var(--bordo); padding-bottom: 28px; margin-bottom: 36px; }
+  .marchio { font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--accento); font-weight: 700; }
+  h1 { font-size: 34px; line-height: 1.2; margin: 12px 0 8px; }
+  .sottotitolo { font-size: 19px; color: var(--grigio); margin: 0; }
+  h2 { font-size: 21px; margin: 40px 0 10px; }
+  h3 { font-size: 17px; margin: 26px 0 6px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+  .nota {
+    border-left: 3px solid var(--accento);
+    padding: 2px 0 2px 16px;
+    color: var(--grigio);
+    margin: 22px 0;
+  }
+  footer {
+    margin-top: 56px; padding-top: 22px;
+    border-top: 1px solid var(--bordo);
+    color: var(--grigio); font-size: 15px;
+  }
+  a { color: var(--accento); }
+</style>
+</head>
+<body>
+<div class="foglio">
+
+<header>
+  <div class="marchio">Mercury Secretary</div>
+  <h1>Il segretario che guarda le comunicazioni al posto tuo</h1>
+  <p class="sottotitolo">Un'applicazione per Mac, iPhone e iPad che legge quello che arriva, capisce cosa conta e prepara le risposte. La decisione resta sempre di chi la usa.</p>
+</header>
+
+<h2>Il problema</h2>
+<p>Chi riceve molte email e molti messaggi non perde tempo a rispondere: lo perde a capire <em>cosa</em> merita una risposta adesso e cosa può aspettare. Le caselle si riempiono, i canali si moltiplicano, e mettere in ordine la giornata diventa un lavoro a sé.</p>
+
+<h2>Cosa fa Mercury</h2>
+<p>Mercury osserva le comunicazioni in arrivo dagli account che colleghi, le divide per giudizio invece che per ordine di arrivo, e prepara una bozza di risposta dove serve. Non manda niente da solo: quello che parte lo decidi tu.</p>
+
+<h3>Oggi</h3>
+<p>La prima schermata: cosa è arrivato oggi, quali appuntamenti ci sono, e che cosa aspetta una decisione. Niente elenchi infiniti da scorrere.</p>
+
+<h3>Notifiche</h3>
+<p>Quello che arriva, diviso in sei sezioni: <strong>VIP</strong> (i contatti che contano, da qualunque canale), <strong>Urgenti</strong>, <strong>Da rispondere</strong>, <strong>Arrivati</strong>, <strong>Già risposto</strong>, <strong>Indesiderata</strong>. Dentro ogni sezione i messaggi sono contati per provenienza, così si vede da dove arrivano senza mescolare le caselle. Un messaggio urgente di un contatto VIP sta in VIP: chi scrive conta più di quanto è urgente.</p>
+
+<h3>Comunicazioni</h3>
+<p>Il registro di quello che parte da te: le bozze da rivedere e mandare, e quelle già mandate.</p>
+
+<h3>Calendario</h3>
+<p>Si appoggia al calendario che hai già su Mac e iPhone — nessuna seconda agenda da tenere. Un appuntamento si aggiunge descrivendolo a parole, e Mercury chiede sempre conferma prima di salvarlo.</p>
+
+<h2>Cosa collega, e cosa no</h2>
+<ul>
+  <li><strong>Gmail</strong> — legge la posta in arrivo e manda le risposte che scrivi qui, con il tuo permesso dato dalla pagina di Google.</li>
+  <li><strong>Telegram</strong> — legge e risponde, tramite un bot che colleghi tu.</li>
+  <li><strong>WhatsApp Business</strong> — <strong>manda</strong> messaggi. Quelli che arrivano su WhatsApp non entrano in Mercury: per leggerli serve l'app di WhatsApp. È scritto anche dentro l'app, dove si collega.</li>
+</ul>
+
+<div class="nota">
+  <p><strong>Dove stanno i tuoi dati.</strong> Non esiste un server di Mercury. I messaggi restano sul tuo dispositivo e vanno solo ai servizi che autorizzi tu; le credenziali stanno nel Portachiavi del sistema. Il testo dei messaggi in arrivo viene inviato ad Anthropic per essere classificato e per scrivere le bozze. Il dettaglio è nell'<a href="privacy.html">informativa sulla privacy</a>.</p>
+</div>
+
+<h2>A che punto è</h2>
+<p>Mercury Secretary è in sviluppo attivo e in prova sul campo. Non è ancora sull'App Store.</p>
+
+<footer>
+  <p><a href="privacy.html">Informativa sulla privacy</a> · <a href="https://github.com/dariovannini/mercury-secretary">Il progetto su GitHub</a></p>
+  <p>© 2026 Mercury Secretary</p>
+</footer>
+
+</div>
+</body>
+</html>
