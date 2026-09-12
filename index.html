@@ -99,7 +99,7 @@
       </div>
     </section>
 
-    <!-- Selettore Schermate Reali (Solo sezioni autentiche dell'app) -->
+    <!-- Selettore Schermate Reali (Notifiche, Oggi, Calendario) -->
     <section id="interfaccia" class="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
       <div class="text-center mb-6">
         <span class="text-xs uppercase tracking-wider text-zinc-400 font-semibold">
@@ -108,7 +108,7 @@
         </span>
       </div>
 
-      <!-- Barra dei selettori: le 4 sezioni reali caricate -->
+      <!-- Barra dei 3 selettori reali -->
       <div class="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-2">
         <button onclick="showScreen('notifiche')" id="btn-screen-notifiche" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0">
           <span class="lang-it">Notifiche</span><span class="lang-en">Notifications</span>
@@ -118,9 +118,6 @@
         </button>
         <button onclick="showScreen('calendario')" id="btn-screen-calendario" class="px-4 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
           <span class="lang-it">Calendario</span><span class="lang-en">Calendar</span>
-        </button>
-        <button onclick="showScreen('impostazioni')" id="btn-screen-impostazioni" class="px-4 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
-          <span class="lang-it">Impostazioni</span><span class="lang-en">Settings</span>
         </button>
       </div>
 
@@ -150,11 +147,6 @@
           <!-- 3. Calendario -->
           <div id="panel-calendario" class="screen-panel w-full">
             <img src="Screenshot Calendario.png" alt="Calendario" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm block">
-          </div>
-
-          <!-- 4. Impostazioni -->
-          <div id="panel-impostazioni" class="screen-panel w-full">
-            <img src="Screenshot Procedure.png" alt="Impostazioni" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm block">
           </div>
         </div>
       </div>
@@ -301,8 +293,7 @@
     const titles = {
       notifiche: 'Mercury Secretary — Notifiche',
       oggi: 'Mercury Secretary — Oggi (La tua scrivania)',
-      calendario: 'Mercury Secretary — Calendario (EventKit)',
-      impostazioni: 'Mercury Secretary — Impostazioni'
+      calendario: 'Mercury Secretary — Calendario (EventKit)'
     };
 
     function showScreen(tabId) {
@@ -310,7 +301,7 @@
       const target = document.getElementById('panel-' + tabId);
       if (target) target.classList.add('active');
 
-      const tabs = ['notifiche', 'oggi', 'calendario', 'impostazioni'];
+      const tabs = ['notifiche', 'oggi', 'calendario'];
       tabs.forEach(t => {
         const btn = document.getElementById('btn-screen-' + t);
         if (btn) {
