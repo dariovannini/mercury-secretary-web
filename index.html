@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mercury Secretary — Assistente nativo per macOS</title>
+  <title>Mercury Secretary — Assistente nativo macOS</title>
   
-  <!-- Icona e Favicon -->
   <link rel="icon" type="image/png" href="icon.png">
   <link rel="apple-touch-icon" href="icon.png">
 
@@ -17,374 +16,273 @@
   <style>
     body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
     .lang-en { display: none; }
+    .screen-panel { display: none; }
+    .screen-panel.active { display: block; }
   </style>
 </head>
-<body class="bg-white text-zinc-900 antialiased selection:bg-purple-100 selection:text-purple-900">
+<body class="bg-[#FBFBFC] text-zinc-900 antialiased selection:bg-purple-100 selection:text-purple-900">
 
   <!-- Navigazione -->
   <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-zinc-200">
     <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <img src="icon.png" alt="Mercury Secretary" class="w-8 h-8 rounded-lg shadow-sm border border-zinc-200/80 object-cover">
+        <img src="icon.png" alt="Mercury" class="w-8 h-8 rounded-lg shadow-sm border border-zinc-200 object-cover">
         <span class="font-semibold text-lg tracking-tight text-[#280D44]">Mercury Secretary</span>
-        <span class="hidden md:inline-block text-xs bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded border border-zinc-200 font-medium">
-          <span class="lang-it">macOS Nativo</span>
-          <span class="lang-en">macOS Native</span>
+        <span class="hidden sm:inline-block text-[11px] bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded border border-zinc-200 font-medium">
+          <span class="lang-it">macOS Nativo (v2.0)</span>
+          <span class="lang-en">macOS Native (v2.0)</span>
         </span>
       </div>
 
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
-        <a href="#funzioni" class="hover:text-zinc-950 transition-colors">
-          <span class="lang-it">Funzionalità</span><span class="lang-en">Features</span>
+        <a href="#interfaccia" class="hover:text-zinc-950 transition-colors">
+          <span class="lang-it">Schermate</span><span class="lang-en">Screenshots</span>
         </a>
-        <a href="#architettura" class="hover:text-zinc-950 transition-colors">
-          <span class="lang-it">Architettura & Privacy</span><span class="lang-en">Architecture & Privacy</span>
+        <a href="#moduli" class="hover:text-zinc-950 transition-colors">
+          <span class="lang-it">Funzionalità</span><span class="lang-en">Features</span>
         </a>
         <a href="#canali" class="hover:text-zinc-950 transition-colors">
           <span class="lang-it">Canali</span><span class="lang-en">Channels</span>
         </a>
       </nav>
 
-      <div class="flex items-center gap-4">
-        <!-- Selettore Lingua IT / EN -->
+      <div class="flex items-center gap-3">
         <div class="inline-flex rounded-lg border border-zinc-200 p-0.5 bg-zinc-50 text-xs font-semibold">
           <button id="btn-it" onclick="setLanguage('it')" class="px-2.5 py-1 rounded bg-white text-zinc-900 shadow-sm transition-all">IT</button>
           <button id="btn-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded text-zinc-500 hover:text-zinc-900 transition-all">EN</button>
         </div>
-        <a href="#beta" class="hidden sm:inline-flex text-xs font-semibold px-4 py-2 rounded-lg bg-[#6D28D9] hover:bg-[#5B21B6] text-white transition-colors">
-          <span class="lang-it">Richiedi Accesso</span><span class="lang-en">Request Access</span>
+        <a href="#beta" class="text-xs font-semibold px-3.5 py-2 rounded-lg bg-[#280D44] hover:bg-[#3D1466] text-white transition-colors">
+          <span class="lang-it">Richiedi Invito</span><span class="lang-en">Request Access</span>
         </a>
       </div>
     </div>
   </header>
 
   <main>
-    <!-- Sezione Hero -->
-    <section class="max-w-4xl mx-auto px-6 pt-16 pb-12 text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-100 border border-zinc-200 text-xs font-medium text-zinc-700 mb-6">
-        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-        <span class="lang-it">Versione beta per macOS • Ramo iOS in fase di sviluppo</span>
-        <span class="lang-en">Beta version for macOS • iOS release in development</span>
+    <!-- Hero Section -->
+    <section class="max-w-4xl mx-auto px-6 pt-16 pb-10 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-medium text-[#280D44] mb-6">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="lang-it">Sistema in ascolto • AI Attiva su macOS</span>
+        <span class="lang-en">System listening • Active AI on macOS</span>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 leading-[1.15] mb-6">
-        <span class="lang-it">Gestione assistita di email, messaggi e calendario su macOS.</span>
-        <span class="lang-en">Assisted email, messaging, and calendar management for macOS.</span>
+      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 leading-[1.15] mb-5">
+        <span class="lang-it">Ti prepara il lavoro sulla scrivania.<br>A te resta solo decidere.</span>
+        <span class="lang-en">Prepares the desk for your decisions.<br>You simply make the call.</span>
       </h1>
 
       <p class="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
-        <span class="lang-it">Mercury esamina le comunicazioni in entrata, le organizza per priorità ed elabora bozze di risposta contestuali. Il testo generato può essere verificato e modificato liberamente: nessun messaggio viene inoltrato e nessun appuntamento confermato senza la tua approvazione manuale.</span>
-        <span class="lang-en">Mercury analyzes incoming communications, prioritizes urgent requests, and drafts contextual replies. All generated content can be reviewed and modified: no message is dispatched and no event saved without explicit manual confirmation.</span>
+        <span class="lang-it">Mercury esamina le comunicazioni in entrata, isola le urgenze da newsletter e spam, e predispone le risposte già scritte. L'agenda si aggiorna a parole tue. Nessun automatismo non autorizzato: decidi sempre tu cosa inviare e cosa salvare.</span>
+        <span class="lang-en">Mercury scans incoming communications, filters high priorities from noise, and drafts contextual replies. Coordinates your calendar using natural text. Nothing is dispatched or scheduled without your explicit sign-off.</span>
       </p>
 
-      <!-- Modulo Raccolta Email Beta -->
+      <!-- Form Beta -->
       <div id="beta" class="max-w-md mx-auto mb-6">
         <form onsubmit="handleSignup(event)" class="flex flex-col sm:flex-row gap-2">
-          <input type="email" required placeholder="nome@azienda.it" class="flex-1 px-4 py-2.5 rounded-lg border border-zinc-300 text-sm focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent">
-          <button type="submit" class="px-5 py-2.5 rounded-lg bg-[#6D28D9] hover:bg-[#5B21B6] text-white text-sm font-semibold transition-colors shrink-0">
-            <span class="lang-it">Richiedi Invito Beta</span>
+          <input type="email" required placeholder="La tua email professionale" class="flex-1 px-4 py-2.5 rounded-lg border border-zinc-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#280D44] bg-white">
+          <button type="submit" class="px-5 py-2.5 rounded-lg bg-[#280D44] hover:bg-[#3E1668] text-white text-sm font-semibold transition-colors shrink-0">
+            <span class="lang-it">Richiedi Accesso Beta</span>
             <span class="lang-en">Request Beta Access</span>
           </button>
         </form>
         <p id="signup-confirmation" class="text-xs text-emerald-700 font-medium mt-2 hidden">
-          <span class="lang-it">Richiesta registrata. Riceverai un riscontro all'apertura del prossimo gruppo di prova.</span>
-          <span class="lang-en">Request received. You will be notified as soon as the next testing group opens.</span>
+          <span class="lang-it">Richiesta registrata. Riceverai un riscontro per il prossimo gruppo di prova.</span>
+          <span class="lang-en">Request recorded. You will be notified for the next testing stage.</span>
         </p>
       </div>
 
-      <!-- Indicatori di garanzia architetturale -->
-      <div class="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-zinc-500 pt-2">
-        <span class="flex items-center gap-1.5"><i data-lucide="check" class="w-4 h-4 text-zinc-700"></i><span class="lang-it">Nessun invio automatico</span><span class="lang-en">No automatic dispatch</span></span>
-        <span class="flex items-center gap-1.5"><i data-lucide="hard-drive" class="w-4 h-4 text-zinc-700"></i><span class="lang-it">Archivio sul tuo Mac</span><span class="lang-en">Local storage on device</span></span>
-        <span class="flex items-center gap-1.5"><i data-lucide="lock" class="w-4 h-4 text-zinc-700"></i><span class="lang-it">Integrazione nativa Apple</span><span class="lang-en">Native Apple integration</span></span>
+      <div class="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-zinc-500">
+        <span class="flex items-center gap-1.5"><i data-lucide="shield" class="w-4 h-4 text-[#280D44]"></i><span class="lang-it">Approvazione manuale</span><span class="lang-en">Explicit Approval</span></span>
+        <span class="flex items-center gap-1.5"><i data-lucide="cpu" class="w-4 h-4 text-[#280D44]"></i><span class="lang-it">Nativo Swift & Portachiavi Apple</span><span class="lang-en">Native Swift & Keychain</span></span>
+        <span class="flex items-center gap-1.5"><i data-lucide="receipt" class="w-4 h-4 text-[#280D44]"></i><span class="lang-it">Costi computazionali al centesimo</span><span class="lang-en">Transparent compute costs</span></span>
       </div>
     </section>
 
-    <!-- Mockup dell'interfaccia macOS -->
-    <section class="max-w-5xl mx-auto px-6 pb-20">
-      <div class="rounded-xl border border-zinc-300 shadow-xl overflow-hidden bg-white">
-        <!-- Barra superiore macOS -->
-        <div class="h-10 bg-zinc-100 border-b border-zinc-200 px-4 flex items-center justify-between">
+    <!-- Galleria Screenshot Reali -->
+    <section id="interfaccia" class="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
+      <div class="text-center mb-6">
+        <span class="text-xs uppercase tracking-wider text-zinc-400 font-semibold">
+          <span class="lang-it">Schermate Reali dell'Applicazione</span>
+          <span class="lang-en">Real Application Interface</span>
+        </span>
+      </div>
+
+      <!-- Barra dei selettori schermata -->
+      <div class="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-2">
+        <button onclick="showScreen('notifiche')" id="btn-screen-notifiche" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0">
+          <span class="lang-it">Notifiche & Triage</span><span class="lang-en">Triage & Alerts</span>
+        </button>
+        <button onclick="showScreen('oggi')" id="btn-screen-oggi" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+          <span class="lang-it">Oggi (La Scrivania)</span><span class="lang-en">Today (Desk)</span>
+        </button>
+        <button onclick="showScreen('comunicazioni')" id="btn-screen-comunicazioni" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+          <span class="lang-it">Comunicazioni & Bozze</span><span class="lang-en">Drafts & Outbox</span>
+        </button>
+        <button onclick="showScreen('calendario')" id="btn-screen-calendario" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+          <span class="lang-it">Calendario (EventKit)</span><span class="lang-en">Calendar (EventKit)</span>
+        </button>
+        <button onclick="showScreen('impostazioni')" id="btn-screen-impostazioni" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+          <span class="lang-it">Costi & Impostazioni</span><span class="lang-en">Costs & Settings</span>
+        </button>
+      </div>
+
+      <!-- Finestra macOS Wrapper -->
+      <div class="rounded-xl border border-zinc-300 shadow-2xl overflow-hidden bg-white">
+        <div class="h-9 bg-zinc-100 border-b border-zinc-200 px-4 flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-red-400 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-emerald-400 inline-block"></span>
-            <span class="text-xs font-medium text-zinc-500 ml-2">Mercury Secretary — Comunicazioni</span>
+            <span class="w-3 h-3 rounded-full bg-[#FF5F56] border border-black/10 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-[#FFBD2E] border border-black/10 inline-block"></span>
+            <span class="w-3 h-3 rounded-full bg-[#27C93F] border border-black/10 inline-block"></span>
+            <span id="screen-title" class="text-xs font-medium text-zinc-600 ml-2">Mercury Secretary — Notifiche & Triage</span>
           </div>
-          <span class="text-xs text-zinc-400 font-mono">SwiftUI • SwiftData</span>
+          <span class="text-[11px] text-zinc-400 font-mono">macOS 15+</span>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-12 min-h-[400px]">
-          <!-- Sidebar -->
-          <div class="md:col-span-4 bg-zinc-50 border-r border-zinc-200 p-4 flex flex-col justify-between">
-            <div class="space-y-1">
-              <div class="flex items-center gap-2 px-3 py-2 rounded-md bg-white border border-zinc-200 text-xs font-semibold text-zinc-900 shadow-sm">
-                <i data-lucide="inbox" class="w-4 h-4 text-[#6D28D9]"></i>
-                <span class="lang-it">Comunicazioni (2)</span><span class="lang-en">Inbox (2)</span>
-              </div>
-              <div class="flex items-center gap-2 px-3 py-2 rounded-md text-xs text-zinc-600 hover:bg-zinc-100">
-                <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
-                <span class="lang-it">Oggi</span><span class="lang-en">Today</span>
-              </div>
-              <div class="flex items-center gap-2 px-3 py-2 rounded-md text-xs text-zinc-600 hover:bg-zinc-100">
-                <i data-lucide="calendar" class="w-4 h-4"></i>
-                <span class="lang-it">Calendario</span><span class="lang-en">Calendar</span>
-              </div>
-              <div class="flex items-center gap-2 px-3 py-2 rounded-md text-xs text-zinc-600 hover:bg-zinc-100">
-                <i data-lucide="sliders" class="w-4 h-4"></i>
-                <span class="lang-it">Impostazioni Segretario</span><span class="lang-en">Assistant Settings</span>
-              </div>
-            </div>
-
-            <div class="p-3 bg-amber-50 rounded-lg border border-amber-200 text-xs text-amber-900">
-              <span class="font-semibold block mb-1">
-                <span class="lang-it">Controllo Operativo</span><span class="lang-en">Operating Control</span>
-              </span>
-              <span class="lang-it">Nessuna azione in background. L'invio e il salvataggio richiedono conferma manuale.</span>
-              <span class="lang-en">No background tasks dispatched. Sending and saving require manual confirmation.</span>
-            </div>
+        <!-- Riquadri Immagini -->
+        <div class="bg-zinc-50 p-2 sm:p-4 min-h-[420px] flex items-center justify-center">
+          <div id="panel-notifiche" class="screen-panel active w-full">
+            <img src="screen-notifiche.png" alt="Mercury Notifiche" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm" onerror="this.parentElement.innerHTML='<div class=\'p-12 text-center text-xs text-zinc-400\'>Carica <strong>screen-notifiche.png</strong> su GitHub per visualizzare questa schermata.</div>'">
           </div>
 
-          <!-- Area Operativa Centrale -->
-          <div class="md:col-span-8 p-6 flex flex-col justify-between bg-white">
-            <div class="space-y-4">
-              <!-- Messaggio prioritario -->
-              <div class="flex items-start justify-between border-b border-zinc-100 pb-3">
-                <div>
-                  <div class="flex items-center gap-2">
-                    <span class="font-semibold text-sm text-zinc-900">Studio Associato Rialto</span>
-                    <span class="text-xs px-2 py-0.5 rounded bg-zinc-100 text-zinc-600 font-mono">Gmail</span>
-                  </div>
-                  <p class="text-xs text-zinc-500 mt-0.5">Oggetto: Revisione documentazione integrativa</p>
-                </div>
-                <span class="text-xs font-semibold px-2.5 py-1 rounded-full bg-amber-100 text-amber-900 border border-amber-300 flex items-center gap-1">
-                  <i data-lucide="alert-circle" class="w-3.5 h-3.5 text-amber-700"></i>
-                  <span class="lang-it">Urgente • Richiesta cliente</span>
-                  <span class="lang-en">Urgent • Client request</span>
-                </span>
-              </div>
+          <div id="panel-oggi" class="screen-panel w-full">
+            <img src="screen-oggi.png" alt="Mercury Scrivania" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm" onerror="this.parentElement.innerHTML='<div class=\'p-12 text-center text-xs text-zinc-400\'>Carica <strong>screen-oggi.png</strong> su GitHub per visualizzare questa schermata.</div>'">
+          </div>
 
-              <!-- Bozza Elaborata -->
-              <div class="bg-zinc-50 rounded-lg p-4 border border-zinc-200">
-                <div class="flex items-center justify-between text-xs font-medium text-zinc-500 mb-2">
-                  <span class="flex items-center gap-1.5 text-zinc-700 font-semibold">
-                    <i data-lucide="sparkles" class="w-3.5 h-3.5 text-[#6D28D9]"></i>
-                    <span class="lang-it">Bozza elaborata dall'IA (Modificabile)</span>
-                    <span class="lang-en">AI-Drafted Reply (Fully Editable)</span>
-                  </span>
-                  <span class="text-zinc-400">Tono: Formale</span>
-                </div>
-                <p class="text-xs text-zinc-700 leading-relaxed font-mono">
-                  "Gentile Avvocato, ho esaminato la documentazione allegata. Le confermo la disponibilità a procedere entro giovedì alle 16:00. Resto a disposizione per chiarimenti."
-                </p>
-              </div>
+          <div id="panel-comunicazioni" class="screen-panel w-full">
+            <img src="screen-comunicazioni.png" alt="Mercury Comunicazioni" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm" onerror="this.parentElement.innerHTML='<div class=\'p-12 text-center text-xs text-zinc-400\'>Carica <strong>screen-comunicazioni.png</strong> su GitHub per visualizzare questa schermata.</div>'">
+          </div>
 
-              <!-- Rilevamento appuntamento calendario -->
-              <div class="flex items-center justify-between p-3 rounded-lg bg-purple-50/60 border border-purple-200 text-xs">
-                <div class="flex items-center gap-2 text-purple-950 font-medium">
-                  <i data-lucide="calendar-plus" class="w-4 h-4 text-[#6D28D9]"></i>
-                  <span class="lang-it">Evento individuato nel testo: Giovedì alle 16:00</span>
-                  <span class="lang-en">Event detected in message body: Thursday at 4:00 PM</span>
-                </div>
-                <span class="text-purple-700 font-semibold cursor-pointer hover:underline">
-                  <span class="lang-it">+ Aggiungi al Calendario Apple</span>
-                  <span class="lang-en">+ Add to Apple Calendar</span>
-                </span>
-              </div>
-            </div>
+          <div id="panel-calendario" class="screen-panel w-full">
+            <img src="screen-calendario.png" alt="Mercury Calendario" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm" onerror="this.parentElement.innerHTML='<div class=\'p-12 text-center text-xs text-zinc-400\'>Carica <strong>screen-calendario.png</strong> su GitHub per visualizzare questa schermata.</div>'">
+          </div>
 
-            <!-- Azione Primaria -->
-            <div class="pt-4 border-t border-zinc-100 flex items-center justify-between">
-              <span class="text-xs text-zinc-400">La risposta parte dal canale di origine (Gmail).</span>
-              <button class="px-4 py-2 rounded-lg bg-[#6D28D9] hover:bg-[#5B21B6] text-white text-xs font-semibold flex items-center gap-2 transition-colors">
-                <i data-lucide="send" class="w-3.5 h-3.5"></i>
-                <span class="lang-it">Approva e Invia</span>
-                <span class="lang-en">Approve & Send</span>
-              </button>
-            </div>
+          <div id="panel-impostazioni" class="screen-panel w-full">
+            <img src="screen-impostazioni.png" alt="Mercury Impostazioni e Costi" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm" onerror="this.parentElement.innerHTML='<div class=\'p-12 text-center text-xs text-zinc-400\'>Carica <strong>screen-impostazioni.png</strong> su GitHub per visualizzare questa schermata.</div>'">
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Le 4 Funzionalità Chiave -->
-    <section id="funzioni" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200">
+    <!-- Moduli Funzionali -->
+    <section id="moduli" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200">
       <div class="mb-12 max-w-2xl">
-        <h2 class="text-2xl font-bold text-zinc-950 tracking-tight mb-3">
-          <span class="lang-it">I quattro moduli operativi dell'applicazione.</span>
-          <span class="lang-en">Four core operational modules.</span>
+        <h2 class="text-2xl font-bold text-zinc-950 tracking-tight mb-2">
+          <span class="lang-it">I quattro compiti del segretario esecutivo.</span>
+          <span class="lang-en">The four duties of the executive secretary.</span>
         </h2>
         <p class="text-sm text-zinc-600">
-          <span class="lang-it">Strutturato per gestire comunicazioni e impegni senza automatismi non verificati dall'utente.</span>
-          <span class="lang-en">Engineered to handle communications and commitments with full user oversight.</span>
+          <span class="lang-it">Un'applicazione pensata per sbrigare il lavoro d'ufficio prima che arrivi sul tuo tavolo.</span>
+          <span class="lang-en">Engineered to handle preparatory office tasks before they reach your desk.</span>
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <!-- Modulo 1 -->
-        <div class="p-6 rounded-xl border border-zinc-200 bg-zinc-50/50">
-          <div class="w-9 h-9 rounded-lg bg-zinc-200 flex items-center justify-center text-zinc-800 mb-4">
-            <i data-lucide="filter" class="w-5 h-5"></i>
-          </div>
-          <h3 class="font-semibold text-zinc-950 text-base mb-2">
-            <span class="lang-it">1. Triage e prioritizzazione automatica</span>
-            <span class="lang-en">1. Triage and Automatic Prioritization</span>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div class="p-6 rounded-xl border border-zinc-200 bg-white">
+          <h3 class="font-bold text-zinc-950 text-sm mb-1.5">
+            <span class="lang-it">1. Notifiche & Triage (Fa da scudo)</span>
+            <span class="lang-en">1. Inbound Triage & Alerts</span>
           </h3>
-          <p class="text-sm text-zinc-600 leading-relaxed">
-            <span class="lang-it">Esamina le comunicazioni in arrivo, separando i messaggi operativi e i contatti contrassegnati come prioritari da notifiche automatiche e newsletter.</span>
-            <span class="lang-en">Scans incoming communications to separate urgent matters and priority contacts from newsletters and automated notifications.</span>
+          <p class="text-xs text-zinc-600 leading-relaxed">
+            <span class="lang-it">Isola i contatti VIP e le urgenze operative. Se un avviso riguarda la sicurezza o una richiesta vincolante, Mercury ne sintetizza il rischio immediato; altrimenti filtra il rumore senza interromperti.</span>
+            <span class="lang-en">Isolates VIP contacts and urgent requests. If an alert involves account security or binding deadlines, Mercury highlights the operational risk; otherwise, noise is silenced.</span>
           </p>
         </div>
 
-        <!-- Modulo 2 -->
-        <div class="p-6 rounded-xl border border-zinc-200 bg-zinc-50/50">
-          <div class="w-9 h-9 rounded-lg bg-zinc-200 flex items-center justify-center text-zinc-800 mb-4">
-            <i data-lucide="edit-3" class="w-5 h-5"></i>
-          </div>
-          <h3 class="font-semibold text-zinc-950 text-base mb-2">
-            <span class="lang-it">2. Bozze generate dall'IA con controllo manuale</span>
-            <span class="lang-en">2. AI Drafts with Explicit Manual Control</span>
+        <div class="p-6 rounded-xl border border-zinc-200 bg-white">
+          <h3 class="font-bold text-zinc-950 text-sm mb-1.5">
+            <span class="lang-it">2. Comunicazioni (Istruisce la pratica)</span>
+            <span class="lang-en">2. Contextual Outbound Drafting</span>
           </h3>
-          <p class="text-sm text-zinc-600 leading-relaxed">
-            <span class="lang-it">Per i messaggi che richiedono risposta, l'applicazione formula una bozza contestuale. L'utente ha sempre il controllo finale: può rileggere, modificare o riscrivere il testo prima di autorizzare l'invio.</span>
-            <span class="lang-en">For messages requiring follow-up, the system drafts a context-aware reply. You retain full control: review, edit, or adjust the text before authorizing manual dispatch.</span>
+          <p class="text-xs text-zinc-600 leading-relaxed">
+            <span class="lang-it">Mercury scrive la bozza di risposta nel tuo stile. Tu mantieni la firma: puoi leggerla, modificarla o approvarla con un clic. Se preferisci, puoi abilitare l'invio autonomo solo per contatti VIP selezionati.</span>
+            <span class="lang-en">Mercury drafts context-aware replies matching your tone. You retain signing authority: read, edit, or approve with one click. Optionally enable autonomous dispatch for VIP contacts.</span>
           </p>
         </div>
 
-        <!-- Modulo 3 -->
-        <div class="p-6 rounded-xl border border-zinc-200 bg-zinc-50/50">
-          <div class="w-9 h-9 rounded-lg bg-zinc-200 flex items-center justify-center text-zinc-800 mb-4">
-            <i data-lucide="calendar-check" class="w-5 h-5"></i>
-          </div>
-          <h3 class="font-semibold text-zinc-950 text-base mb-2">
-            <span class="lang-it">3. Pianificazione calendario da testo naturale</span>
-            <span class="lang-en">3. Natural Language Calendar Management</span>
+        <div class="p-6 rounded-xl border border-zinc-200 bg-white">
+          <h3 class="font-bold text-zinc-950 text-sm mb-1.5">
+            <span class="lang-it">3. Calendario (Coordina l'agenda)</span>
+            <span class="lang-en">3. Natural Language Scheduling</span>
           </h3>
-          <p class="text-sm text-zinc-600 leading-relaxed">
-            <span class="lang-it">Rileva scadenze nelle conversazioni o riceve istruzioni testuali in linguaggio naturale (es. «Fissa con Marco venerdì alle 10:00»). Propone l'evento al Calendario Apple di sistema via EventKit, senza form manuali.</span>
-            <span class="lang-en">Detects deadlines in messages or accepts written natural language instructions. Events are proposed directly to native Apple Calendar via EventKit without manual form fields.</span>
+          <p class="text-xs text-zinc-600 leading-relaxed">
+            <span class="lang-it">Basta scrivere «pranzo venerdì alle 13 con Marco»: Mercury ricava data e ora e inserisce l'evento nel Calendario Apple (EventKit) con promemoria, senza moduli manuali da compilare.</span>
+            <span class="lang-en">Type «meeting with Mark Friday at 1 PM»: Mercury extracts dates and creates the event in native Apple Calendar via EventKit with reminders, zero forms needed.</span>
           </p>
         </div>
 
-        <!-- Modulo 4 -->
-        <div class="p-6 rounded-xl border border-zinc-200 bg-zinc-50/50">
-          <div class="w-9 h-9 rounded-lg bg-zinc-200 flex items-center justify-center text-zinc-800 mb-4">
-            <i data-lucide="activity" class="w-5 h-5"></i>
-          </div>
-          <h3 class="font-semibold text-zinc-950 text-base mb-2">
-            <span class="lang-it">4. Trasparenza sui consumi computazionali</span>
-            <span class="lang-en">4. Local Compute and Cost Tracking</span>
+        <div class="p-6 rounded-xl border border-zinc-200 bg-white">
+          <h3 class="font-bold text-zinc-950 text-sm mb-1.5">
+            <span class="lang-it">4. Trasparenza sui Costi Computazionali</span>
+            <span class="lang-en">4. Local Compute Cost Metering</span>
           </h3>
-          <p class="text-sm text-zinc-600 leading-relaxed">
-            <span class="lang-it">Un registro locale monitora il volume di messaggi esaminati, il tasso di revisione delle bozze e il costo computazionale effettivo dei modelli linguistici utilizzati, senza ricarichi occulti.</span>
-            <span class="lang-en">A local ledger tracks message volume, draft edit ratios, and exact language model compute costs on-device with zero hidden markups.</span>
+          <p class="text-xs text-zinc-600 leading-relaxed">
+            <span class="lang-it">L'IA locale on-device opera a costo zero. Se decidi di collegare modelli cloud, un contatore su dispositivo misura token e costo esatto al centesimo, senza abbonamenti gonfiati.</span>
+            <span class="lang-en">On-device local AI operates with zero fees. If cloud models are connected, an on-device ledger tracks token spend down to the penny, without inflated subscriptions.</span>
           </p>
         </div>
       </div>
     </section>
 
-    <!-- Riservatezza & Architettura -->
-    <section id="architettura" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200">
-      <div class="max-w-2xl mb-8">
-        <h2 class="text-2xl font-bold text-zinc-950 tracking-tight mb-3">
-          <span class="lang-it">Infrastruttura locale e protezione delle credenziali.</span>
-          <span class="lang-en">Local infrastructure and credential protection.</span>
-        </h2>
-        <p class="text-sm text-zinc-600">
-          <span class="lang-it">Costruito per rispettare i requisiti di sicurezza della piattaforma macOS.</span>
-          <span class="lang-en">Built directly to adhere to macOS security and privacy standards.</span>
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div class="p-5 rounded-lg border border-zinc-200 bg-white">
-          <h4 class="font-semibold text-zinc-950 text-sm mb-1.5">
-            <span class="lang-it">Nessun server intermediario</span>
-            <span class="lang-en">No Intermediary Servers</span>
-          </h4>
-          <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">I dati non vengono salvati su server proprietari esterni. L'archivio delle comunicazioni risiede interamente nella memoria locale del Mac.</span>
-            <span class="lang-en">Data is never stored on external proprietary servers. The communications archive lives strictly on your Mac's local storage.</span>
-          </p>
-        </div>
-        <div class="p-5 rounded-lg border border-zinc-200 bg-white">
-          <h4 class="font-semibold text-zinc-950 text-sm mb-1.5">
-            <span class="lang-it">Portachiavi protetto di Apple</span>
-            <span class="lang-en">Hardware Apple Keychain</span>
-          </h4>
-          <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">I token e le chiavi di autenticazione per i singoli canali sono custoditi nel Portachiavi di sistema, protetti a livello hardware.</span>
-            <span class="lang-en">Channel authentication tokens and API credentials remain stored in the macOS Keychain, secured at the hardware level.</span>
-          </p>
-        </div>
-        <div class="p-5 rounded-lg border border-zinc-200 bg-white">
-          <h4 class="font-semibold text-zinc-950 text-sm mb-1.5">
-            <span class="lang-it">Zero addestramento dati</span>
-            <span class="lang-en">Zero Model Training</span>
-          </h4>
-          <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">I testi vengono inviati ai modelli esclusivamente per l'elaborazione del riscontro contingente, senza riutilizzo per il training di modelli terzi.</span>
-            <span class="lang-en">Text data is sent to language models strictly for single-request processing, never for third-party machine learning training.</span>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Canali Supportati e Roadmap -->
+    <!-- Canali Supportati (Con WhatsApp In Arrivo) -->
     <section id="canali" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200">
       <div class="max-w-2xl mb-8">
         <h2 class="text-2xl font-bold text-zinc-950 tracking-tight mb-2">
           <span class="lang-it">Canali supportati e stato di sviluppo.</span>
-          <span class="lang-en">Supported channels and development roadmap.</span>
+          <span class="lang-en">Supported channels and availability status.</span>
         </h2>
         <p class="text-sm text-zinc-600">
-          <span class="lang-it">Stato effettivo delle integrazioni nella build corrente e nella roadmap programmata.</span>
-          <span class="lang-en">Current integration status across live builds and planned releases.</span>
+          <span class="lang-it">Trasparenza rigorosa su ciò che è operativo subito e ciò che arriverà nei prossimi aggiornamenti.</span>
+          <span class="lang-en">Strict clarity regarding what works today versus features scheduled in upcoming releases.</span>
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Gmail -->
         <div class="p-4 rounded-lg border border-zinc-200 bg-white">
-          <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center justify-between mb-1.5">
             <span class="font-semibold text-sm text-zinc-900">Gmail</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium">Attivo</span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Attivo</span>
           </div>
           <p class="text-xs text-zinc-500">
-            <span class="lang-it">Lettura messaggi, prioritizzazione e preparazione bozze.</span>
-            <span class="lang-en">Message ingestion, priority triage, and draft generation.</span>
+            <span class="lang-it">Triage in entrata, notifiche e invio bozze approvate.</span>
+            <span class="lang-en">Inbound triage, notifications, and verified draft dispatch.</span>
           </p>
         </div>
 
+        <!-- Telegram -->
         <div class="p-4 rounded-lg border border-zinc-200 bg-white">
-          <div class="flex items-center justify-between mb-2">
-            <span class="font-semibold text-sm text-zinc-900">Telegram</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium">Attivo</span>
+          <div class="flex items-center justify-between mb-1.5">
+            <span class="font-semibold text-sm text-zinc-900">Telegram Bot</span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Attivo</span>
           </div>
           <p class="text-xs text-zinc-500">
-            <span class="lang-it">Supporto per i flussi di messaggistica diretta prioritari.</span>
-            <span class="lang-en">Direct priority communication channel management.</span>
+            <span class="lang-it">Messaggistica diretta e notifiche rapide per contatti selezionati.</span>
+            <span class="lang-en">Direct messaging and immediate alerts for selected contacts.</span>
           </p>
         </div>
 
+        <!-- Calendario Apple -->
         <div class="p-4 rounded-lg border border-zinc-200 bg-white">
-          <div class="flex items-center justify-between mb-2">
+          <div class="flex items-center justify-between mb-1.5">
             <span class="font-semibold text-sm text-zinc-900">Calendario Apple</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium">Attivo</span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Attivo</span>
           </div>
           <p class="text-xs text-zinc-500">
-            <span class="lang-it">Sincronizzazione nativa di sistema via EventKit.</span>
-            <span class="lang-en">Native two-way system sync via EventKit.</span>
+            <span class="lang-it">Sincronizzazione nativa bidirezionale via EventKit.</span>
+            <span class="lang-en">Native two-way synchronization via EventKit.</span>
           </p>
         </div>
 
-        <div class="p-4 rounded-lg border border-zinc-200 bg-zinc-50">
-          <div class="flex items-center justify-between mb-2">
+        <!-- WhatsApp Business (Non disponibile / In arrivo) -->
+        <div class="p-4 rounded-lg border border-amber-200 bg-amber-50/30">
+          <div class="flex items-center justify-between mb-1.5">
             <span class="font-semibold text-sm text-zinc-900">WhatsApp Business</span>
-            <span class="text-xs px-2 py-0.5 rounded bg-zinc-200 text-zinc-700 font-medium">In sviluppo</span>
+            <span class="text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-bold border border-amber-300">In arrivo</span>
           </div>
-          <p class="text-xs text-zinc-500">
-            <span class="lang-it">Integrazione pianificata nei successivi aggiornamenti.</span>
-            <span class="lang-en">Planned integration scheduled for upcoming builds.</span>
+          <p class="text-xs text-amber-900/80 leading-normal">
+            <span class="lang-it">Non ancora collegabile: l'integrazione è attualmente in fase di sviluppo e sarà resa disponibile con il prossimo aggiornamento.</span>
+            <span class="lang-en">Currently unavailable: integration is under active development and will be enabled in an upcoming release.</span>
           </p>
         </div>
       </div>
@@ -392,24 +290,51 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-zinc-200 bg-zinc-50 text-zinc-500 text-xs py-10">
+  <footer class="border-t border-zinc-200 bg-white text-zinc-500 text-xs py-10">
     <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div class="flex items-center gap-2">
-        <img src="icon.png" alt="Mercury" class="w-5 h-5 rounded object-cover grayscale opacity-80">
-        <span>© 2026 Mercury Secretary. </span>
-        <span class="lang-it">Applicazione nativa per l'ecosistema Apple.</span>
-        <span class="lang-en">Native application engineered for Apple platforms.</span>
+        <img src="icon.png" alt="Mercury" class="w-4 h-4 rounded object-cover">
+        <span>© 2026 Mercury Secretary. Costruito con SwiftUI per l'ecosistema Apple.</span>
       </div>
       <div class="flex items-center gap-6">
         <a href="privacy.html" class="hover:text-zinc-900 underline underline-offset-4">Privacy Policy</a>
-        <span>Requisiti: macOS 14.0 o versioni successive</span>
+        <span>Requisiti: macOS 15.0+</span>
       </div>
     </div>
   </footer>
 
-  <!-- Script cambio lingua e interazioni -->
+  <!-- Script Funzionalità: Screen Switcher & Lingua -->
   <script>
     lucide.createIcons();
+
+    const titles = {
+      notifiche: 'Mercury Secretary — Notifiche & Triage',
+      oggi: 'Mercury Secretary — La tua scrivania (Oggi)',
+      comunicazioni: 'Mercury Secretary — Comunicazioni & Bozze',
+      calendario: 'Mercury Secretary — Calendario (EventKit)',
+      impostazioni: 'Mercury Secretary — Costi & Impostazioni'
+    };
+
+    function showScreen(tabId) {
+      document.querySelectorAll('.screen-panel').forEach(p => p.classList.remove('active'));
+      const target = document.getElementById('panel-' + tabId);
+      if (target) target.classList.add('active');
+
+      const tabs = ['notifiche', 'oggi', 'comunicazioni', 'calendario', 'impostazioni'];
+      tabs.forEach(t => {
+        const btn = document.getElementById('btn-screen-' + t);
+        if (btn) {
+          if (t === tabId) {
+            btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0';
+          } else {
+            btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0';
+          }
+        }
+      });
+
+      const titleEl = document.getElementById('screen-title');
+      if (titleEl && titles[tabId]) titleEl.innerText = titles[tabId];
+    }
 
     function setLanguage(lang) {
       if (lang === 'en') {
@@ -434,7 +359,6 @@
       e.target.reset();
     }
 
-    // Carica preferenza memorizzata
     const savedLang = localStorage.getItem('mercury_lang') || 'it';
     setLanguage(savedLang);
   </script>
