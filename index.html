@@ -73,7 +73,7 @@
       </h1>
 
       <p class="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
-        <span class="lang-it">Mercury esamina le comunicazioni in entrata, isola le urgenze da newsletter e spam, e predispone le risposte già scritte. L'agenda si aggiorna a parole tue. Nessun automatismo non autorizzato: decidi sempre tu cosa inviare e cosa salvare.</span>
+        <span class="lang-it">Mercury esamina le comunicazioni in entrata, isola le urgenze da newsletter e spam, e predispone le risposte già scritte. L'agenda si aggiorna a parole tue. Nessun invio autonomo non autorizzato: decidi sempre tu cosa confermare.</span>
         <span class="lang-en">Mercury scans incoming communications, filters high priorities from noise, and drafts contextual replies. Coordinates your calendar using natural text. Nothing is dispatched or scheduled without your explicit sign-off.</span>
       </p>
 
@@ -110,20 +110,23 @@
 
       <!-- Barra dei selettori schermata -->
       <div class="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-2">
-        <button onclick="showScreen('notifiche')" id="btn-screen-notifiche" class="px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0">
-          <span class="lang-it">Notifiche & Triage</span><span class="lang-en">Triage & Alerts</span>
+        <button onclick="showScreen('notifiche')" id="btn-screen-notifiche" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0">
+          <span class="lang-it">Notifiche</span><span class="lang-en">Notifications</span>
         </button>
-        <button onclick="showScreen('oggi')" id="btn-screen-oggi" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
-          <span class="lang-it">Oggi (La Scrivania)</span><span class="lang-en">Today (Desk)</span>
+        <button onclick="showScreen('oggi')" id="btn-screen-oggi" class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+          <span class="lang-it">Scrivania (Oggi)</span><span class="lang-en">Desk (Today)</span>
         </button>
-        <button onclick="showScreen('comunicazioni')" id="btn-screen-comunicazioni" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
-          <span class="lang-it">Comunicazioni & Bozze</span><span class="lang-en">Drafts & Outbox</span>
+        <button onclick="showScreen('calendario')" id="btn-screen-calendario" class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+          <span class="lang-it">Calendario</span><span class="lang-en">Calendar</span>
         </button>
-        <button onclick="showScreen('calendario')" id="btn-screen-calendario" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
-          <span class="lang-it">Calendario (EventKit)</span><span class="lang-en">Calendar (EventKit)</span>
+        <button onclick="showScreen('procedure')" id="btn-screen-procedure" class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+          <span class="lang-it">Statistiche & Costi</span><span class="lang-en">Stats & Costs</span>
         </button>
-        <button onclick="showScreen('impostazioni')" id="btn-screen-impostazioni" class="px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
-          <span class="lang-it">Costi & Impostazioni</span><span class="lang-en">Costs & Settings</span>
+        <button onclick="showScreen('istruzioni-ai')" id="btn-screen-istruzioni-ai" class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+          <span class="lang-it">Configurazione IA</span><span class="lang-en">AI Config</span>
+        </button>
+        <button onclick="showScreen('canali-ai')" id="btn-screen-canali-ai" class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+          <span class="lang-it">Regole Canali</span><span class="lang-en">Channel Rules</span>
         </button>
       </div>
 
@@ -139,26 +142,36 @@
           <span class="text-[11px] text-zinc-400 font-mono">macOS 15+</span>
         </div>
 
-        <!-- Riquadri Immagini -->
+        <!-- Riquadri Immagini mappati sui nomi esatti -->
         <div class="bg-zinc-50 p-2 sm:p-4 min-h-[420px] flex items-center justify-center">
+          <!-- 1. Notifiche -->
           <div id="panel-notifiche" class="screen-panel active w-full">
-            <img src="screen-notifiche.png" alt="Mercury Notifiche" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm" onerror="this.parentElement.innerHTML='<div class=\'p-12 text-center text-xs text-zinc-400\'>Carica <strong>screen-notifiche.png</strong> su GitHub per visualizzare questa schermata.</div>'">
+            <img src="Screenshot Notifiche.png" alt="Mercury Notifiche" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
           </div>
 
+          <!-- 2. Oggi -->
           <div id="panel-oggi" class="screen-panel w-full">
-            <img src="screen-oggi.png" alt="Mercury Scrivania" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm" onerror="this.parentElement.innerHTML='<div class=\'p-12 text-center text-xs text-zinc-400\'>Carica <strong>screen-oggi.png</strong> su GitHub per visualizzare questa schermata.</div>'">
+            <img src="Screenshot Oggi La tua Scrivania.png" alt="Mercury Scrivania Oggi" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
           </div>
 
-          <div id="panel-comunicazioni" class="screen-panel w-full">
-            <img src="screen-comunicazioni.png" alt="Mercury Comunicazioni" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm" onerror="this.parentElement.innerHTML='<div class=\'p-12 text-center text-xs text-zinc-400\'>Carica <strong>screen-comunicazioni.png</strong> su GitHub per visualizzare questa schermata.</div>'">
-          </div>
-
+          <!-- 3. Calendario -->
           <div id="panel-calendario" class="screen-panel w-full">
-            <img src="screen-calendario.png" alt="Mercury Calendario" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm" onerror="this.parentElement.innerHTML='<div class=\'p-12 text-center text-xs text-zinc-400\'>Carica <strong>screen-calendario.png</strong> su GitHub per visualizzare questa schermata.</div>'">
+            <img src="Screenshot Calendario.png" alt="Mercury Calendario" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
           </div>
 
-          <div id="panel-impostazioni" class="screen-panel w-full">
-            <img src="screen-impostazioni.png" alt="Mercury Impostazioni e Costi" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm" onerror="this.parentElement.innerHTML='<div class=\'p-12 text-center text-xs text-zinc-400\'>Carica <strong>screen-impostazioni.png</strong> su GitHub per visualizzare questa schermata.</div>'">
+          <!-- 4. Procedure / Costi -->
+          <div id="panel-procedure" class="screen-panel w-full">
+            <img src="Screenshot Procedure.png" alt="Mercury Statistiche e Costi" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
+          </div>
+
+          <!-- 5. Impostazioni IA -->
+          <div id="panel-istruzioni-ai" class="screen-panel w-full">
+            <img src="Schermata Impostazioni Segretario AI.png" alt="Mercury Impostazioni Segretario AI" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
+          </div>
+
+          <!-- 6. Impostazioni Canali -->
+          <div id="panel-canali-ai" class="screen-panel w-full">
+            <img src="Schermata Impostazioni Canali.png" alt="Mercury Impostazioni Canali" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
           </div>
         </div>
       </div>
@@ -172,8 +185,8 @@
           <span class="lang-en">The four duties of the executive secretary.</span>
         </h2>
         <p class="text-sm text-zinc-600">
-          <span class="lang-it">Un'applicazione pensata per sbrigare il lavoro d'ufficio prima che arrivi sul tuo tavolo.</span>
-          <span class="lang-en">Engineered to handle preparatory office tasks before they reach your desk.</span>
+          <span class="lang-it">Un'applicazione strutturata per istruire il lavoro prima che arrivi sulla tua scrivania.</span>
+          <span class="lang-en">Engineered to prepare the work before it reaches your desk.</span>
         </p>
       </div>
 
@@ -184,8 +197,8 @@
             <span class="lang-en">1. Inbound Triage & Alerts</span>
           </h3>
           <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">Isola i contatti VIP e le urgenze operative. Se un avviso riguarda la sicurezza o una richiesta vincolante, Mercury ne sintetizza il rischio immediato; altrimenti filtra il rumore senza interromperti.</span>
-            <span class="lang-en">Isolates VIP contacts and urgent requests. If an alert involves account security or binding deadlines, Mercury highlights the operational risk; otherwise, noise is silenced.</span>
+            <span class="lang-it">Isola i contatti VIP e le urgenze operative. Se un messaggio contiene un avviso di sicurezza critico, Mercury ne riassume il motivo pratico; altrimenti silenziosa il rumore di fondo.</span>
+            <span class="lang-en">Isolates VIP contacts and urgent requests. If an alert involves security, Mercury summarizes the operational risk; otherwise, background noise is silenced.</span>
           </p>
         </div>
 
@@ -195,8 +208,8 @@
             <span class="lang-en">2. Contextual Outbound Drafting</span>
           </h3>
           <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">Mercury scrive la bozza di risposta nel tuo stile. Tu mantieni la firma: puoi leggerla, modificarla o approvarla con un clic. Se preferisci, puoi abilitare l'invio autonomo solo per contatti VIP selezionati.</span>
-            <span class="lang-en">Mercury drafts context-aware replies matching your tone. You retain signing authority: read, edit, or approve with one click. Optionally enable autonomous dispatch for VIP contacts.</span>
+            <span class="lang-it">Mercury redige la bozza di risposta nel tuo stile. Tu mantieni la firma finale: puoi leggerla, modificarla o approvarla. Se desiderato, puoi abilitare l'invio autonomo solo per contatti VIP selezionati.</span>
+            <span class="lang-en">Mercury drafts context-aware replies in your personal style. You retain signing authority: read, edit, or approve. Optionally enable autonomous dispatch for chosen VIPs.</span>
           </p>
         </div>
 
@@ -206,8 +219,8 @@
             <span class="lang-en">3. Natural Language Scheduling</span>
           </h3>
           <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">Basta scrivere «pranzo venerdì alle 13 con Marco»: Mercury ricava data e ora e inserisce l'evento nel Calendario Apple (EventKit) con promemoria, senza moduli manuali da compilare.</span>
-            <span class="lang-en">Type «meeting with Mark Friday at 1 PM»: Mercury extracts dates and creates the event in native Apple Calendar via EventKit with reminders, zero forms needed.</span>
+            <span class="lang-it">Basta digitare «pranzo venerdì alle 13 con Marco»: Mercury interpreta data e orario e inserisce l'evento nel Calendario Apple (EventKit) con i relativi promemoria. Zero form manuali.</span>
+            <span class="lang-en">Simply type «meeting with Mark Friday at 1 PM»: Mercury detects the date and syncs the event to native Apple Calendar via EventKit with reminders. Zero manual forms.</span>
           </p>
         </div>
 
@@ -217,8 +230,8 @@
             <span class="lang-en">4. Local Compute Cost Metering</span>
           </h3>
           <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">L'IA locale on-device opera a costo zero. Se decidi di collegare modelli cloud, un contatore su dispositivo misura token e costo esatto al centesimo, senza abbonamenti gonfiati.</span>
-            <span class="lang-en">On-device local AI operates with zero fees. If cloud models are connected, an on-device ledger tracks token spend down to the penny, without inflated subscriptions.</span>
+            <span class="lang-it">L'IA locale on-device opera a costo zero. Per i modelli cloud opzionali, un registro su dispositivo conteggia le chiamate e il costo esatto al centesimo, senza abbonamenti gonfiati.</span>
+            <span class="lang-en">On-device local AI operates with zero fees. For optional cloud models, a local ledger tracks compute spend down to the penny, without inflated subscriptions.</span>
           </p>
         </div>
       </div>
@@ -232,7 +245,7 @@
           <span class="lang-en">Supported channels and availability status.</span>
         </h2>
         <p class="text-sm text-zinc-600">
-          <span class="lang-it">Trasparenza rigorosa su ciò che è operativo subito e ciò che arriverà nei prossimi aggiornamenti.</span>
+          <span class="lang-it">Trasparenza rigorosa su ciò che è operativo subito e ciò che arriverà nei prossimi rilasci.</span>
           <span class="lang-en">Strict clarity regarding what works today versus features scheduled in upcoming releases.</span>
         </p>
       </div>
@@ -245,7 +258,7 @@
             <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Attivo</span>
           </div>
           <p class="text-xs text-zinc-500">
-            <span class="lang-it">Triage in entrata, notifiche e invio bozze approvate.</span>
+            <span class="lang-it">Triage in entrata, notifiche e invio bozze verificate.</span>
             <span class="lang-en">Inbound triage, notifications, and verified draft dispatch.</span>
           </p>
         </div>
@@ -257,8 +270,8 @@
             <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Attivo</span>
           </div>
           <p class="text-xs text-zinc-500">
-            <span class="lang-it">Messaggistica diretta e notifiche rapide per contatti selezionati.</span>
-            <span class="lang-en">Direct messaging and immediate alerts for selected contacts.</span>
+            <span class="lang-it">Messaggistica diretta e notifiche rapide per contatti prioritari.</span>
+            <span class="lang-en">Direct messaging and immediate alerts for priority contacts.</span>
           </p>
         </div>
 
@@ -274,7 +287,7 @@
           </p>
         </div>
 
-        <!-- WhatsApp Business (Non disponibile / In arrivo) -->
+        <!-- WhatsApp Business (In Arrivo) -->
         <div class="p-4 rounded-lg border border-amber-200 bg-amber-50/30">
           <div class="flex items-center justify-between mb-1.5">
             <span class="font-semibold text-sm text-zinc-900">WhatsApp Business</span>
@@ -310,9 +323,10 @@
     const titles = {
       notifiche: 'Mercury Secretary — Notifiche & Triage',
       oggi: 'Mercury Secretary — La tua scrivania (Oggi)',
-      comunicazioni: 'Mercury Secretary — Comunicazioni & Bozze',
       calendario: 'Mercury Secretary — Calendario (EventKit)',
-      impostazioni: 'Mercury Secretary — Costi & Impostazioni'
+      procedure: 'Mercury Secretary — Statistiche & Costi Computazionali',
+      'istruzioni-ai': 'Mercury Secretary — Configurazione Motore IA',
+      'canali-ai': 'Mercury Secretary — Istruzioni per Canale'
     };
 
     function showScreen(tabId) {
@@ -320,14 +334,14 @@
       const target = document.getElementById('panel-' + tabId);
       if (target) target.classList.add('active');
 
-      const tabs = ['notifiche', 'oggi', 'comunicazioni', 'calendario', 'impostazioni'];
+      const tabs = ['notifiche', 'oggi', 'calendario', 'procedure', 'istruzioni-ai', 'canali-ai'];
       tabs.forEach(t => {
         const btn = document.getElementById('btn-screen-' + t);
         if (btn) {
           if (t === tabId) {
-            btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0';
+            btn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0';
           } else {
-            btn.className = 'px-3.5 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0';
+            btn.className = 'px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0';
           }
         }
       });
