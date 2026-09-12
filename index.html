@@ -73,8 +73,8 @@
       </h1>
 
       <p class="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
-        <span class="lang-it">Mercury esamina le comunicazioni in entrata, isola le urgenze da newsletter e spam, e predispone le risposte già scritte. L'agenda si aggiorna a parole tue. Nessun invio autonomo non autorizzato: decidi sempre tu cosa confermare.</span>
-        <span class="lang-en">Mercury scans incoming communications, filters high priorities from noise, and drafts contextual replies. Coordinates your calendar using natural text. Nothing is dispatched or scheduled without your explicit sign-off.</span>
+        <span class="lang-it">Mercury esamina le comunicazioni in entrata, isola le urgenze da newsletter e spam, e predispone le risposte già scritte. L'agenda si aggiorna a parole tue. Nessun invio autonomo: decidi sempre tu cosa confermare.</span>
+        <span class="lang-en">Mercury scans incoming communications, filters high priorities from noise, and drafts contextual replies. Coordinates your calendar using natural text. Nothing is dispatched without your explicit sign-off.</span>
       </p>
 
       <!-- Form Beta -->
@@ -99,79 +99,62 @@
       </div>
     </section>
 
-    <!-- Galleria Screenshot Reali -->
+    <!-- Selettore Schermate Reali (Solo sezioni autentiche dell'app) -->
     <section id="interfaccia" class="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
       <div class="text-center mb-6">
         <span class="text-xs uppercase tracking-wider text-zinc-400 font-semibold">
-          <span class="lang-it">Schermate Reali dell'Applicazione</span>
-          <span class="lang-en">Real Application Interface</span>
+          <span class="lang-it">Schermate dell'Applicazione</span>
+          <span class="lang-en">Application Interface</span>
         </span>
       </div>
 
-      <!-- Barra dei selettori schermata -->
+      <!-- Barra dei selettori: le 4 sezioni reali caricate -->
       <div class="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-2">
-        <button onclick="showScreen('notifiche')" id="btn-screen-notifiche" class="px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0">
+        <button onclick="showScreen('notifiche')" id="btn-screen-notifiche" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0">
           <span class="lang-it">Notifiche</span><span class="lang-en">Notifications</span>
         </button>
-        <button onclick="showScreen('oggi')" id="btn-screen-oggi" class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
-          <span class="lang-it">Scrivania (Oggi)</span><span class="lang-en">Desk (Today)</span>
+        <button onclick="showScreen('oggi')" id="btn-screen-oggi" class="px-4 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+          <span class="lang-it">Oggi (La Scrivania)</span><span class="lang-en">Today (Desk)</span>
         </button>
-        <button onclick="showScreen('calendario')" id="btn-screen-calendario" class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+        <button onclick="showScreen('calendario')" id="btn-screen-calendario" class="px-4 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
           <span class="lang-it">Calendario</span><span class="lang-en">Calendar</span>
         </button>
-        <button onclick="showScreen('procedure')" id="btn-screen-procedure" class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
-          <span class="lang-it">Statistiche & Costi</span><span class="lang-en">Stats & Costs</span>
-        </button>
-        <button onclick="showScreen('istruzioni-ai')" id="btn-screen-istruzioni-ai" class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
-          <span class="lang-it">Configurazione IA</span><span class="lang-en">AI Config</span>
-        </button>
-        <button onclick="showScreen('canali-ai')" id="btn-screen-canali-ai" class="px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
-          <span class="lang-it">Regole Canali</span><span class="lang-en">Channel Rules</span>
+        <button onclick="showScreen('impostazioni')" id="btn-screen-impostazioni" class="px-4 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
+          <span class="lang-it">Impostazioni</span><span class="lang-en">Settings</span>
         </button>
       </div>
 
-      <!-- Finestra macOS Wrapper -->
+      <!-- Cornice macOS -->
       <div class="rounded-xl border border-zinc-300 shadow-2xl overflow-hidden bg-white">
         <div class="h-9 bg-zinc-100 border-b border-zinc-200 px-4 flex items-center justify-between">
           <div class="flex items-center gap-2">
             <span class="w-3 h-3 rounded-full bg-[#FF5F56] border border-black/10 inline-block"></span>
             <span class="w-3 h-3 rounded-full bg-[#FFBD2E] border border-black/10 inline-block"></span>
             <span class="w-3 h-3 rounded-full bg-[#27C93F] border border-black/10 inline-block"></span>
-            <span id="screen-title" class="text-xs font-medium text-zinc-600 ml-2">Mercury Secretary — Notifiche & Triage</span>
+            <span id="screen-title" class="text-xs font-medium text-zinc-600 ml-2">Mercury Secretary — Notifiche</span>
           </div>
           <span class="text-[11px] text-zinc-400 font-mono">macOS 15+</span>
         </div>
 
-        <!-- Riquadri Immagini mappati sui nomi esatti -->
-        <div class="bg-zinc-50 p-2 sm:p-4 min-h-[420px] flex items-center justify-center">
+        <div class="bg-zinc-50 p-2 sm:p-4 min-h-[440px] flex items-center justify-center">
           <!-- 1. Notifiche -->
           <div id="panel-notifiche" class="screen-panel active w-full">
-            <img src="Screenshot Notifiche.png" alt="Mercury Notifiche" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
+            <img src="Screenshot Notifiche.png" alt="Notifiche" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm block">
           </div>
 
           <!-- 2. Oggi -->
           <div id="panel-oggi" class="screen-panel w-full">
-            <img src="Screenshot Oggi La tua Scrivania.png" alt="Mercury Scrivania Oggi" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
+            <img src="Screenshot Oggi La tua Scrivania.png" alt="Scrivania Oggi" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm block">
           </div>
 
           <!-- 3. Calendario -->
           <div id="panel-calendario" class="screen-panel w-full">
-            <img src="Screenshot Calendario.png" alt="Mercury Calendario" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
+            <img src="Screenshot Calendario.png" alt="Calendario" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm block">
           </div>
 
-          <!-- 4. Procedure / Costi -->
-          <div id="panel-procedure" class="screen-panel w-full">
-            <img src="Screenshot Procedure.png" alt="Mercury Statistiche e Costi" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
-          </div>
-
-          <!-- 5. Impostazioni IA -->
-          <div id="panel-istruzioni-ai" class="screen-panel w-full">
-            <img src="Schermata Impostazioni Segretario AI.png" alt="Mercury Impostazioni Segretario AI" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
-          </div>
-
-          <!-- 6. Impostazioni Canali -->
-          <div id="panel-canali-ai" class="screen-panel w-full">
-            <img src="Schermata Impostazioni Canali.png" alt="Mercury Impostazioni Canali" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm">
+          <!-- 4. Impostazioni -->
+          <div id="panel-impostazioni" class="screen-panel w-full">
+            <img src="Screenshot Procedure.png" alt="Impostazioni" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm block">
           </div>
         </div>
       </div>
@@ -181,12 +164,12 @@
     <section id="moduli" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200">
       <div class="mb-12 max-w-2xl">
         <h2 class="text-2xl font-bold text-zinc-950 tracking-tight mb-2">
-          <span class="lang-it">I quattro compiti del segretario esecutivo.</span>
-          <span class="lang-en">The four duties of the executive secretary.</span>
+          <span class="lang-it">I compiti del segretario esecutivo.</span>
+          <span class="lang-en">Executive secretary responsibilities.</span>
         </h2>
         <p class="text-sm text-zinc-600">
           <span class="lang-it">Un'applicazione strutturata per istruire il lavoro prima che arrivi sulla tua scrivania.</span>
-          <span class="lang-en">Engineered to prepare the work before it reaches your desk.</span>
+          <span class="lang-en">Engineered to prepare incoming work before it reaches your desk.</span>
         </p>
       </div>
 
@@ -197,7 +180,7 @@
             <span class="lang-en">1. Inbound Triage & Alerts</span>
           </h3>
           <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">Isola i contatti VIP e le urgenze operative. Se un messaggio contiene un avviso di sicurezza critico, Mercury ne riassume il motivo pratico; altrimenti silenziosa il rumore di fondo.</span>
+            <span class="lang-it">Isola i contatti VIP e le urgenze operative. Se un messaggio contiene un avviso critico, Mercury ne riassume il motivo pratico; altrimenti silenzia il rumore di fondo.</span>
             <span class="lang-en">Isolates VIP contacts and urgent requests. If an alert involves security, Mercury summarizes the operational risk; otherwise, background noise is silenced.</span>
           </p>
         </div>
@@ -208,8 +191,8 @@
             <span class="lang-en">2. Contextual Outbound Drafting</span>
           </h3>
           <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">Mercury redige la bozza di risposta nel tuo stile. Tu mantieni la firma finale: puoi leggerla, modificarla o approvarla. Se desiderato, puoi abilitare l'invio autonomo solo per contatti VIP selezionati.</span>
-            <span class="lang-en">Mercury drafts context-aware replies in your personal style. You retain signing authority: read, edit, or approve. Optionally enable autonomous dispatch for chosen VIPs.</span>
+            <span class="lang-it">Mercury redige la bozza di risposta nel tuo stile. Tu mantieni la firma finale: puoi leggerla, modificarla o approvarla. L'invio autonomo è attivabile opzionalmente per i soli contatti VIP.</span>
+            <span class="lang-en">Mercury drafts context-aware replies in your personal style. You retain signing authority: read, edit, or approve. Autonomous send is optional for VIP contacts.</span>
           </p>
         </div>
 
@@ -219,7 +202,7 @@
             <span class="lang-en">3. Natural Language Scheduling</span>
           </h3>
           <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">Basta digitare «pranzo venerdì alle 13 con Marco»: Mercury interpreta data e orario e inserisce l'evento nel Calendario Apple (EventKit) con i relativi promemoria. Zero form manuali.</span>
+            <span class="lang-it">Basta digitare «pranzo venerdì alle 13 con Marco»: Mercury interpreta data e orario e inserisce l'evento nel Calendario Apple (EventKit) con i promemoria. Zero form manuali.</span>
             <span class="lang-en">Simply type «meeting with Mark Friday at 1 PM»: Mercury detects the date and syncs the event to native Apple Calendar via EventKit with reminders. Zero manual forms.</span>
           </p>
         </div>
@@ -237,7 +220,7 @@
       </div>
     </section>
 
-    <!-- Canali Supportati (Con WhatsApp In Arrivo) -->
+    <!-- Canali Supportati -->
     <section id="canali" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200">
       <div class="max-w-2xl mb-8">
         <h2 class="text-2xl font-bold text-zinc-950 tracking-tight mb-2">
@@ -251,7 +234,6 @@
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Gmail -->
         <div class="p-4 rounded-lg border border-zinc-200 bg-white">
           <div class="flex items-center justify-between mb-1.5">
             <span class="font-semibold text-sm text-zinc-900">Gmail</span>
@@ -263,7 +245,6 @@
           </p>
         </div>
 
-        <!-- Telegram -->
         <div class="p-4 rounded-lg border border-zinc-200 bg-white">
           <div class="flex items-center justify-between mb-1.5">
             <span class="font-semibold text-sm text-zinc-900">Telegram Bot</span>
@@ -275,7 +256,6 @@
           </p>
         </div>
 
-        <!-- Calendario Apple -->
         <div class="p-4 rounded-lg border border-zinc-200 bg-white">
           <div class="flex items-center justify-between mb-1.5">
             <span class="font-semibold text-sm text-zinc-900">Calendario Apple</span>
@@ -287,7 +267,6 @@
           </p>
         </div>
 
-        <!-- WhatsApp Business (In Arrivo) -->
         <div class="p-4 rounded-lg border border-amber-200 bg-amber-50/30">
           <div class="flex items-center justify-between mb-1.5">
             <span class="font-semibold text-sm text-zinc-900">WhatsApp Business</span>
@@ -316,17 +295,14 @@
     </div>
   </footer>
 
-  <!-- Script Funzionalità: Screen Switcher & Lingua -->
   <script>
     lucide.createIcons();
 
     const titles = {
-      notifiche: 'Mercury Secretary — Notifiche & Triage',
-      oggi: 'Mercury Secretary — La tua scrivania (Oggi)',
+      notifiche: 'Mercury Secretary — Notifiche',
+      oggi: 'Mercury Secretary — Oggi (La tua scrivania)',
       calendario: 'Mercury Secretary — Calendario (EventKit)',
-      procedure: 'Mercury Secretary — Statistiche & Costi Computazionali',
-      'istruzioni-ai': 'Mercury Secretary — Configurazione Motore IA',
-      'canali-ai': 'Mercury Secretary — Istruzioni per Canale'
+      impostazioni: 'Mercury Secretary — Impostazioni'
     };
 
     function showScreen(tabId) {
@@ -334,14 +310,14 @@
       const target = document.getElementById('panel-' + tabId);
       if (target) target.classList.add('active');
 
-      const tabs = ['notifiche', 'oggi', 'calendario', 'procedure', 'istruzioni-ai', 'canali-ai'];
+      const tabs = ['notifiche', 'oggi', 'calendario', 'impostazioni'];
       tabs.forEach(t => {
         const btn = document.getElementById('btn-screen-' + t);
         if (btn) {
           if (t === tabId) {
-            btn.className = 'px-3 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0';
+            btn.className = 'px-4 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0';
           } else {
-            btn.className = 'px-3 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0';
+            btn.className = 'px-4 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0';
           }
         }
       });
