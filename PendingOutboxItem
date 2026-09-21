@@ -1,4 +1,2 @@
 cd "/Users/dariovannini/Desktop/Antigravity/Mercury Secretary/Mercury"
-git status --porcelain
-git add MercuryNative/Models/MercuryModels.swift project.yml MercuryNative/Tests/UnitTests/CodaInUscitaTests.swift
-git commit -m "feat: modello coda PendingOutboxItem, test e bump build 2"
+
