@@ -1,347 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
+<!--
+  Questa pagina non carica niente da fuori: nessun carattere, nessuna
+  statistica, nessuno script di terzi. Lo stile sta qui dentro e le immagini
+  sono file di questa cartella.
+
+  Non è una scelta estetica: la pagina dice che Mercury non manda i tuoi dati
+  in giro, e una pagina che lo dice mentre chiama tre domini altrui si smentisce
+  da sola. `GuardiaDelSitoTests` fa fallire la suite se qualcuno aggiunge una
+  risorsa esterna.
+-->
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mercury Secretary — Assistente nativo macOS</title>
-  
-  <link rel="icon" type="image/png" href="icon.png">
-  <link rel="apple-touch-icon" href="icon.png">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/lucide@latest"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
-    .lang-en { display: none; }
-    .screen-panel { display: none; }
-    .screen-panel.active { display: block; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mercury Secretary — il segretario che guarda le comunicazioni al posto tuo</title>
+<meta name="description" content="Mercury Secretary è un'applicazione per Mac, iPhone e iPad che legge le comunicazioni in arrivo da Gmail e Telegram, distingue quelle che chiedono una risposta e prepara le bozze. La decisione resta di chi la usa.">
+<style>
+  :root {
+    --inchiostro: #1a1a2e;
+    --grigio: #5b5b73;
+    --accento: #3d2b7d;
+    --bordo: #e3e3ec;
+    --fondo: #faf9fc;
+    --carta: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--fondo);
+    color: var(--inchiostro);
+    font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  }
+  .foglio { max-width: 760px; margin: 0 auto; padding: 56px 24px 80px; }
+  header { border-bottom: 1px solid var(--bordo); padding-bottom: 28px; margin-bottom: 36px; }
+  .marchio { font-size: 14px; letter-spacing: 2px; text-transform: uppercase; color: var(--accento); font-weight: 700; }
+  h1 { font-size: 34px; line-height: 1.2; margin: 12px 0 8px; }
+  .sottotitolo { font-size: 19px; color: var(--grigio); margin: 0; }
+  h2 { font-size: 21px; margin: 44px 0 10px; }
+  h3 { font-size: 17px; margin: 26px 0 6px; }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 8px; }
+  figure { margin: 26px 0 30px; }
+  figure img {
+    display: block; width: 100%; height: auto;
+    border: 1px solid var(--bordo); border-radius: 10px; background: var(--carta);
+  }
+  figcaption { font-size: 15px; color: var(--grigio); margin-top: 8px; }
+  .nota {
+    border-left: 3px solid var(--accento);
+    padding: 2px 0 2px 16px;
+    color: var(--grigio);
+    margin: 22px 0;
+  }
+  .lista {
+    background: var(--carta);
+    border: 1px solid var(--bordo);
+    border-radius: 12px;
+    padding: 24px 26px;
+    margin: 30px 0;
+  }
+  .lista h2 { margin-top: 0; }
+  .scrivi {
+    display: inline-block;
+    margin: 6px 0 10px;
+    padding: 11px 18px;
+    background: var(--accento);
+    color: #fff;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  footer {
+    margin-top: 56px; padding-top: 22px;
+    border-top: 1px solid var(--bordo);
+    color: var(--grigio); font-size: 15px;
+  }
+  a { color: var(--accento); }
+</style>
 </head>
-<body class="bg-[#FBFBFC] text-zinc-900 antialiased selection:bg-purple-100 selection:text-purple-900">
+<body>
+<div class="foglio">
 
-  <!-- Navigazione -->
-  <header class="sticky top-0 z-50 bg-white/85 backdrop-blur-md border-b border-zinc-200">
-    <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <img src="icon.png" alt="Mercury" class="w-8 h-8 rounded-lg shadow-sm border border-zinc-200 object-cover">
-        <span class="font-semibold text-lg tracking-tight text-[#280D44]">Mercury Secretary</span>
-        <span class="hidden sm:inline-block text-[11px] bg-zinc-100 text-zinc-600 px-2 py-0.5 rounded border border-zinc-200 font-medium">
-          <span class="lang-it">macOS Nativo (v2.0)</span>
-          <span class="lang-en">macOS Native (v2.0)</span>
-        </span>
-      </div>
+<header>
+  <div class="marchio">Mercury Secretary</div>
+  <h1>Il segretario che guarda le comunicazioni al posto tuo</h1>
+  <p class="sottotitolo">Un'applicazione per Mac, iPhone e iPad che legge quello che arriva, distingue cosa chiede una risposta e prepara le bozze. Non manda niente da sola.</p>
+</header>
 
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-600">
-        <a href="#interfaccia" class="hover:text-zinc-950 transition-colors">
-          <span class="lang-it">Schermate</span><span class="lang-en">Screenshots</span>
-        </a>
-        <a href="#moduli" class="hover:text-zinc-950 transition-colors">
-          <span class="lang-it">Funzionalità</span><span class="lang-en">Features</span>
-        </a>
-        <a href="#canali" class="hover:text-zinc-950 transition-colors">
-          <span class="lang-it">Canali</span><span class="lang-en">Channels</span>
-        </a>
-      </nav>
+<h2>Da dove nasce</h2>
+<p>Chi riceve molte email e molti messaggi non perde tempo a rispondere. Lo perde <em>prima</em>: ad aprire tre applicazioni, a scorrere quello che è arrivato, a decidere cosa merita una risposta adesso e cosa può aspettare. È un lavoro che si rifà ogni mattina e che non lascia niente dietro di sé.</p>
+<p>Mercury è nato per fare quella prima parte. Guarda gli account che gli colleghi, legge quello che arriva, e lo mette in ordine di <strong>giudizio</strong> invece che di orario: chi conta, cosa scade, cosa vuole una risposta, cosa è solo arrivato. Dove serve una risposta, la scrive già — e lì si ferma.</p>
 
-      <div class="flex items-center gap-3">
-        <div class="inline-flex rounded-lg border border-zinc-200 p-0.5 bg-zinc-50 text-xs font-semibold">
-          <button id="btn-it" onclick="setLanguage('it')" class="px-2.5 py-1 rounded bg-white text-zinc-900 shadow-sm transition-all">IT</button>
-          <button id="btn-en" onclick="setLanguage('en')" class="px-2.5 py-1 rounded text-zinc-500 hover:text-zinc-900 transition-all">EN</button>
-        </div>
-        <a href="#beta" class="text-xs font-semibold px-3.5 py-2 rounded-lg bg-[#280D44] hover:bg-[#3D1466] text-white transition-colors">
-          <span class="lang-it">Richiedi Invito</span><span class="lang-en">Request Access</span>
-        </a>
-      </div>
-    </div>
-  </header>
+<h2>Come si presenta la giornata</h2>
+<p>La prima schermata non è una casella di posta: è quello che è successo oggi. Gli appuntamenti che hai, i messaggi arrivati, e cosa aspetta una decisione. Da qui non si scorre un elenco infinito: si guarda e si chiude.</p>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="max-w-4xl mx-auto px-6 pt-16 pb-10 text-center">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-50 border border-purple-200 text-xs font-medium text-[#280D44] mb-6">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span class="lang-it">Sistema in ascolto • AI Attiva su macOS</span>
-        <span class="lang-en">System listening • Active AI on macOS</span>
-      </div>
+<figure>
+  <img src="immagini/oggi.png" alt="La schermata Oggi di Mercury Secretary: il riepilogo della giornata, gli appuntamenti in agenda e i messaggi arrivati, con accanto il pulsante per scrivere una bozza.">
+  <figcaption>La schermata «Oggi». Le immagini di questa pagina sono riprese dall'applicazione in <strong>modalità dimostrazione</strong> — la targhetta in alto a sinistra lo dice — quindi i nomi e i messaggi sono inventati: l'unica posta vera è quella di chi la usa, e non finisce su un sito.</figcaption>
+</figure>
 
-      <h1 class="text-3xl sm:text-5xl font-bold tracking-tight text-zinc-950 leading-[1.15] mb-5">
-        <span class="lang-it">L'efficienza di un segretario,<br>anche in totale autonomia.</span>
-        <span class="lang-en">The efficiency of an executive assistant,<br>even on full autopilot.</span>
-      </h1>
+<h2>Il giudizio, non l'ordine di arrivo</h2>
+<p>Quello che arriva viene diviso in sei sezioni, in quest'ordine: <strong>VIP</strong> — i contatti che contano, da qualunque canale — poi <strong>Urgenti</strong>, <strong>Da rispondere</strong>, <strong>Arrivati</strong>, <strong>Già risposto</strong> e <strong>Indesiderata</strong>.</p>
+<p>Un messaggio sta in una sezione sola, altrimenti i conteggi mentono: un messaggio urgente di un contatto VIP sta in VIP, con il contrassegno dell'urgenza. Chi scrive conta più di quanto è urgente. Dentro ogni sezione i messaggi sono contati per provenienza, così si vede da dove arriva la pressione senza mescolare le caselle.</p>
 
-      <p class="text-base sm:text-lg text-zinc-600 leading-relaxed max-w-2xl mx-auto mb-8">
-        <span class="lang-it">Mercury riceve le comunicazioni, isola le urgenze, redige le risposte e fissa gli appuntamenti sul Calendario Apple. Scegli tu se verificare ogni pratica prima dell'invio o lasciare la gestione ordinaria al pilota automatico.</span>
-        <span class="lang-en">Mercury handles inbound communications, prioritizes urgent alerts, drafts responses, and schedules events in Apple Calendar. Choose between manual review or full autonomous execution.</span>
-      </p>
+<figure>
+  <img src="immagini/notifiche.png" alt="La schermata Notifiche: le sezioni VIP, Urgenti, Da rispondere, Arrivati, Già risposto e Indesiderata, con il conteggio per provenienza e il comando per scrivere una bozza con l'IA.">
+  <figcaption>Le sei sezioni. Sotto il titolo di ogni sezione, il conteggio per canale: <span>Gmail 1, Telegram 1</span>.</figcaption>
+</figure>
 
-      <!-- Form Beta -->
-      <div id="beta" class="max-w-md mx-auto mb-6">
-        <form onsubmit="handleSignup(event)" class="flex flex-col sm:flex-row gap-2">
-          <input type="email" required placeholder="La tua email professionale" class="flex-1 px-4 py-2.5 rounded-lg border border-zinc-300 text-sm focus:outline-none focus:ring-2 focus:ring-[#280D44] bg-white">
-          <button type="submit" class="px-5 py-2.5 rounded-lg bg-[#280D44] hover:bg-[#3E1668] text-white text-sm font-semibold transition-colors shrink-0">
-            <span class="lang-it">Richiedi Accesso Beta</span>
-            <span class="lang-en">Request Beta Access</span>
-          </button>
-        </form>
-        <p id="signup-confirmation" class="text-xs text-emerald-700 font-medium mt-2 hidden">
-          <span class="lang-it">Richiesta registrata. Riceverai un riscontro per il prossimo gruppo di prova.</span>
-          <span class="lang-en">Request recorded. You will be notified for the next testing stage.</span>
-        </p>
-      </div>
+<h2>La risposta la scrive, la decisione no</h2>
+<p>Sotto ogni messaggio che chiede una risposta c'è una bozza già scritta. Si legge, si cambia, si manda — o non si manda. Mercury non spedisce niente da solo, e quando una risposta parte finisce nella <strong>stessa conversazione</strong> del messaggio a cui risponde, non in un filo nuovo.</p>
+<p>Se un invio si interrompe a metà, l'applicazione non riprova da sola: dice che l'esito non si conosce e dove controllare. Un messaggio doppio a chi aspetta una risposta è peggio di uno in ritardo.</p>
 
-      <div class="flex flex-wrap items-center justify-center gap-6 text-xs font-medium text-zinc-500">
-        <span class="flex items-center gap-1.5"><i data-lucide="sliders" class="w-4 h-4 text-[#280D44]"></i><span class="lang-it">Supervisione o Pilota Automatico</span><span class="lang-en">Manual Review or Autopilot</span></span>
-        <span class="flex items-center gap-1.5"><i data-lucide="cpu" class="w-4 h-4 text-[#280D44]"></i><span class="lang-it">Nativo Swift & Portachiavi Apple</span><span class="lang-en">Native Swift & Keychain</span></span>
-        <span class="flex items-center gap-1.5"><i data-lucide="receipt" class="w-4 h-4 text-[#280D44]"></i><span class="lang-it">Costi computazionali al centesimo</span><span class="lang-en">Transparent compute costs</span></span>
-      </div>
-    </section>
+<h2>I numeri sono quelli veri</h2>
+<p>Dentro le impostazioni c'è il conto di quello che è successo: messaggi letti, bozze scritte, risposte partite, quanto le bozze vengono cambiate prima di partire, e quanto è costata l'intelligenza artificiale — sui token davvero consumati, non su una stima.</p>
+<p>Quello che non c'è, di proposito, sono le «ore risparmiate»: non le misura niente, e un numero gonfiato si riconosce e brucia la fiducia in tutti gli altri.</p>
 
-    <!-- Selettore Schermate Reali (Notifiche, Oggi, Calendario) -->
-    <section id="interfaccia" class="max-w-6xl mx-auto px-4 sm:px-6 pb-20">
-      <div class="text-center mb-6">
-        <span class="text-xs uppercase tracking-wider text-zinc-400 font-semibold">
-          <span class="lang-it">Schermate dell'Applicazione</span>
-          <span class="lang-en">Application Interface</span>
-        </span>
-      </div>
+<figure>
+  <img src="immagini/impatto.png" alt="La sezione «Il tuo impatto con Mercury» nelle impostazioni: messaggi letti, bozze scritte, inviate, scartate, modifica media e il costo per modello.">
+  <figcaption>«Il tuo impatto con Mercury», contato sul dispositivo. Niente di questo esce da solo.</figcaption>
+</figure>
 
-      <!-- Barra dei 3 selettori reali -->
-      <div class="flex items-center justify-center gap-2 overflow-x-auto pb-4 mb-2">
-        <button onclick="showScreen('notifiche')" id="btn-screen-notifiche" class="px-4 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0">
-          <span class="lang-it">Notifiche</span><span class="lang-en">Notifications</span>
-        </button>
-        <button onclick="showScreen('oggi')" id="btn-screen-oggi" class="px-4 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
-          <span class="lang-it">Oggi (La Scrivania)</span><span class="lang-en">Today (Desk)</span>
-        </button>
-        <button onclick="showScreen('calendario')" id="btn-screen-calendario" class="px-4 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0">
-          <span class="lang-it">Calendario</span><span class="lang-en">Calendar</span>
-        </button>
-      </div>
+<h2>Cosa collega, e cosa no</h2>
+<ul>
+  <li><strong>Gmail</strong> — legge la posta in arrivo e manda le risposte che scrivi qui, con il permesso che dai dalla pagina di Google.</li>
+  <li><strong>Telegram</strong> — legge e risponde, tramite un bot che colleghi tu.</li>
+  <li><strong>WhatsApp Business</strong> — <strong>manda</strong> messaggi. Quelli che arrivano su WhatsApp non entrano in Mercury: per leggerli serve l'applicazione di WhatsApp. È scritto anche dentro l'app, nella schermata dove si collega.</li>
+  <li><strong>Calendario</strong> — quello che hai già su Mac e iPhone, nessuna seconda agenda da tenere. Un appuntamento si aggiunge descrivendolo a parole, e Mercury chiede conferma prima di salvarlo.</li>
+</ul>
 
-      <!-- Cornice macOS -->
-      <div class="rounded-xl border border-zinc-300 shadow-2xl overflow-hidden bg-white">
-        <div class="h-9 bg-zinc-100 border-b border-zinc-200 px-4 flex items-center justify-between">
-          <div class="flex items-center gap-2">
-            <span class="w-3 h-3 rounded-full bg-[#FF5F56] border border-black/10 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-[#FFBD2E] border border-black/10 inline-block"></span>
-            <span class="w-3 h-3 rounded-full bg-[#27C93F] border border-black/10 inline-block"></span>
-            <span id="screen-title" class="text-xs font-medium text-zinc-600 ml-2">Mercury Secretary — Notifiche</span>
-          </div>
-          <span class="text-[11px] text-zinc-400 font-mono">macOS 15+</span>
-        </div>
+<div class="nota">
+  <p><strong>Dove stanno i tuoi dati.</strong> Non esiste un server di Mercury. I messaggi restano sul dispositivo e vanno solo ai servizi che autorizzi tu; le credenziali stanno nel Portachiavi del sistema, mai in chiaro. Il testo dei messaggi in arrivo viene inviato ad Anthropic per essere classificato e per scrivere le bozze. Il dettaglio è nell'<a href="privacy.html">informativa sulla privacy</a>.</p>
+</div>
 
-        <div class="bg-zinc-50 p-2 sm:p-4 min-h-[440px] flex items-center justify-center">
-          <!-- 1. Notifiche -->
-          <div id="panel-notifiche" class="screen-panel active w-full">
-            <img src="Screenshot Notifiche.png" alt="Notifiche" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm block">
-          </div>
+<div class="lista">
+<h2>La lista d'attesa</h2>
+<p>Mercury Secretary è in sviluppo attivo e in prova sul campo. Non è ancora sull'App Store, e non è in vendita: non c'è niente da comprare su questa pagina.</p>
+<p>Se vuoi provarlo quando ci sarà qualcosa da provare, scrivi — l'indirizzo entra in una lista d'attesa e serve a una cosa sola: avvisarti.</p>
+<p><a class="scrivi" href="mailto:dariovannini019@gmail.com?subject=Lista%20d'attesa%20Mercury%20Secretary">Scrivi per entrare nella lista d'attesa</a></p>
+<p><strong>Perché un indirizzo e non un modulo.</strong> Un modulo avrebbe bisogno di un servizio esterno che raccoglie gli indirizzi, e questa pagina non ne chiama nessuno: nessuna statistica, nessun tracciamento, nessun carattere caricato da un altro dominio. Il tuo indirizzo resta in una casella di posta, non viene dato a nessuno, e per uscire dalla lista basta rispondere e dirlo. Sta scritto anche nell'<a href="privacy.html">informativa sulla privacy</a>.</p>
+</div>
 
-          <!-- 2. Oggi -->
-          <div id="panel-oggi" class="screen-panel w-full">
-            <img src="Screenshot Oggi La tua Scrivania.png" alt="Scrivania Oggi" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm block">
-          </div>
+<footer>
+  <p><a href="privacy.html">Informativa sulla privacy</a> · <a href="https://github.com/dariovannini/mercury-secretary">Il progetto su GitHub</a></p>
+  <p>© 2026 Mercury Secretary</p>
+</footer>
 
-          <!-- 3. Calendario -->
-          <div id="panel-calendario" class="screen-panel w-full">
-            <img src="Screenshot Calendario.png" alt="Calendario" class="w-full h-auto rounded-lg border border-zinc-200 shadow-sm block">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Moduli Funzionali -->
-    <section id="moduli" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200">
-      <div class="mb-12 max-w-2xl">
-        <h2 class="text-2xl font-bold text-zinc-950 tracking-tight mb-2">
-          <span class="lang-it">I compiti del segretario operativo.</span>
-          <span class="lang-en">Operational secretary responsibilities.</span>
-        </h2>
-        <p class="text-sm text-zinc-600">
-          <span class="lang-it">Un'applicazione strutturata per istruire e gestire il lavoro d'ufficio prima che arrivi sulla tua scrivania.</span>
-          <span class="lang-en">Engineered to prepare incoming work before it reaches your desk.</span>
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="p-6 rounded-xl border border-zinc-200 bg-white">
-          <h3 class="font-bold text-zinc-950 text-sm mb-1.5">
-            <span class="lang-it">1. Notifiche & Triage (Fa da scudo)</span>
-            <span class="lang-en">1. Inbound Triage & Alerts</span>
-          </h3>
-          <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">Isola i contatti VIP e le urgenze operative. Se un messaggio contiene un avviso critico, Mercury ne riassume il motivo pratico; altrimenti silenzia il rumore di fondo.</span>
-            <span class="lang-en">Isolates VIP contacts and urgent requests. If an alert involves security, Mercury summarizes the operational risk; otherwise, background noise is silenced.</span>
-          </p>
-        </div>
-
-        <div class="p-6 rounded-xl border border-zinc-200 bg-white">
-          <h3 class="font-bold text-zinc-950 text-sm mb-1.5">
-            <span class="lang-it">2. Comunicazioni (Istruisce la pratica)</span>
-            <span class="lang-en">2. Contextual Outbound Drafting</span>
-          </h3>
-          <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">Mercury redige la bozza di risposta nel tuo stile. Tu mantieni la firma finale: puoi leggerla, modificarla o approvarla. L'invio autonomo è attivabile opzionalmente per i soli contatti VIP.</span>
-            <span class="lang-en">Mercury drafts context-aware replies in your personal style. You retain signing authority: read, edit, or approve. Autonomous send is optional for VIP contacts.</span>
-          </p>
-        </div>
-
-        <div class="p-6 rounded-xl border border-zinc-200 bg-white">
-          <h3 class="font-bold text-zinc-950 text-sm mb-1.5">
-            <span class="lang-it">3. Calendario (Coordina l'agenda)</span>
-            <span class="lang-en">3. Natural Language Scheduling</span>
-          </h3>
-          <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">Basta digitare «pranzo venerdì alle 13 con Marco»: Mercury interpreta data e orario e inserisce l'evento nel Calendario Apple (EventKit) con i promemoria. Zero form manuali.</span>
-            <span class="lang-en">Simply type «meeting with Mark Friday at 1 PM»: Mercury detects the date and syncs the event to native Apple Calendar via EventKit with reminders. Zero manual forms.</span>
-          </p>
-        </div>
-
-        <div class="p-6 rounded-xl border border-zinc-200 bg-white">
-          <h3 class="font-bold text-zinc-950 text-sm mb-1.5">
-            <span class="lang-it">4. Trasparenza sui Costi Computazionali</span>
-            <span class="lang-en">4. Local Compute Cost Metering</span>
-          </h3>
-          <p class="text-xs text-zinc-600 leading-relaxed">
-            <span class="lang-it">L'IA locale on-device opera a costo zero. Per i modelli cloud opzionali, un registro su dispositivo conteggia le chiamate e il costo esatto al centesimo, senza abbonamenti gonfiati.</span>
-            <span class="lang-en">On-device local AI operates with zero fees. For optional cloud models, a local ledger tracks compute spend down to the penny, without inflated subscriptions.</span>
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Canali Supportati -->
-    <section id="canali" class="max-w-6xl mx-auto px-6 py-16 border-t border-zinc-200">
-      <div class="max-w-2xl mb-8">
-        <h2 class="text-2xl font-bold text-zinc-950 tracking-tight mb-2">
-          <span class="lang-it">Canali supportati e stato di sviluppo.</span>
-          <span class="lang-en">Supported channels and availability status.</span>
-        </h2>
-        <p class="text-sm text-zinc-600">
-          <span class="lang-it">Trasparenza rigorosa su ciò che è operativo subito e ciò che arriverà nei prossimi rilasci.</span>
-          <span class="lang-en">Strict clarity regarding what works today versus features scheduled in upcoming releases.</span>
-        </p>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div class="p-4 rounded-lg border border-zinc-200 bg-white">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="font-semibold text-sm text-zinc-900">Gmail</span>
-            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Attivo</span>
-          </div>
-          <p class="text-xs text-zinc-500">
-            <span class="lang-it">Triage in entrata, notifiche e invio bozze verificate.</span>
-            <span class="lang-en">Inbound triage, notifications, and verified draft dispatch.</span>
-          </p>
-        </div>
-
-        <div class="p-4 rounded-lg border border-zinc-200 bg-white">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="font-semibold text-sm text-zinc-900">Telegram Bot</span>
-            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Attivo</span>
-          </div>
-          <p class="text-xs text-zinc-500">
-            <span class="lang-it">Messaggistica diretta e notifiche rapide per contatti prioritari.</span>
-            <span class="lang-en">Direct messaging and immediate alerts for priority contacts.</span>
-          </p>
-        </div>
-
-        <div class="p-4 rounded-lg border border-zinc-200 bg-white">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="font-semibold text-sm text-zinc-900">Calendario Apple</span>
-            <span class="text-[10px] px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">Attivo</span>
-          </div>
-          <p class="text-xs text-zinc-500">
-            <span class="lang-it">Sincronizzazione nativa bidirezionale via EventKit.</span>
-            <span class="lang-en">Native two-way synchronization via EventKit.</span>
-          </p>
-        </div>
-
-        <div class="p-4 rounded-lg border border-amber-200 bg-amber-50/30">
-          <div class="flex items-center justify-between mb-1.5">
-            <span class="font-semibold text-sm text-zinc-900">WhatsApp Business</span>
-            <span class="text-[10px] px-2 py-0.5 rounded bg-amber-100 text-amber-900 font-bold border border-amber-300">In arrivo</span>
-          </div>
-          <p class="text-xs text-amber-900/80 leading-normal">
-            <span class="lang-it">Non ancora collegabile: l'integrazione è attualmente in fase di sviluppo e sarà resa disponibile con il prossimo aggiornamento.</span>
-            <span class="lang-en">Currently unavailable: integration is under active development and will be enabled in an upcoming release.</span>
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-zinc-200 bg-white text-zinc-500 text-xs py-10">
-    <div class="max-w-6xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <img src="icon.png" alt="Mercury" class="w-4 h-4 rounded object-cover">
-        <span>© 2026 Mercury Secretary. Costruito con SwiftUI per l'ecosistema Apple.</span>
-      </div>
-      <div class="flex items-center gap-6">
-        <a href="privacy.html" class="hover:text-zinc-900 underline underline-offset-4">Privacy Policy</a>
-        <span>Requisiti: macOS 15.0+</span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
-    lucide.createIcons();
-
-    const titles = {
-      notifiche: 'Mercury Secretary — Notifiche',
-      oggi: 'Mercury Secretary — Oggi (La tua scrivania)',
-      calendario: 'Mercury Secretary — Calendario (EventKit)'
-    };
-
-    function showScreen(tabId) {
-      document.querySelectorAll('.screen-panel').forEach(p => p.classList.remove('active'));
-      const target = document.getElementById('panel-' + tabId);
-      if (target) target.classList.add('active');
-
-      const tabs = ['notifiche', 'oggi', 'calendario'];
-      tabs.forEach(t => {
-        const btn = document.getElementById('btn-screen-' + t);
-        if (btn) {
-          if (t === tabId) {
-            btn.className = 'px-4 py-1.5 rounded-lg text-xs font-semibold bg-[#280D44] text-white shadow-sm transition-all shrink-0';
-          } else {
-            btn.className = 'px-4 py-1.5 rounded-lg text-xs font-medium text-zinc-600 bg-white border border-zinc-200 hover:bg-zinc-50 transition-all shrink-0';
-          }
-        }
-      });
-
-      const titleEl = document.getElementById('screen-title');
-      if (titleEl && titles[tabId]) titleEl.innerText = titles[tabId];
-    }
-
-    function setLanguage(lang) {
-      if (lang === 'en') {
-        document.querySelectorAll('.lang-it').forEach(el => el.style.display = 'none');
-        document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'inline');
-        document.getElementById('btn-en').className = 'px-2.5 py-1 rounded bg-white text-zinc-900 shadow-sm transition-all';
-        document.getElementById('btn-it').className = 'px-2.5 py-1 rounded text-zinc-500 hover:text-zinc-900 transition-all';
-        document.documentElement.lang = 'en';
-      } else {
-        document.querySelectorAll('.lang-en').forEach(el => el.style.display = 'none');
-        document.querySelectorAll('.lang-it').forEach(el => el.style.display = 'inline');
-        document.getElementById('btn-it').className = 'px-2.5 py-1 rounded bg-white text-zinc-900 shadow-sm transition-all';
-        document.getElementById('btn-en').className = 'px-2.5 py-1 rounded text-zinc-500 hover:text-zinc-900 transition-all';
-        document.documentElement.lang = 'it';
-      }
-      localStorage.setItem('mercury_lang', lang);
-    }
-
-    function handleSignup(e) {
-      e.preventDefault();
-      document.getElementById('signup-confirmation').classList.remove('hidden');
-      e.target.reset();
-    }
-
-    const savedLang = localStorage.getItem('mercury_lang') || 'it';
-    setLanguage(savedLang);
-  </script>
+</div>
 </body>
 </html>
